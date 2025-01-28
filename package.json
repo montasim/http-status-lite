@@ -9,19 +9,16 @@
     "npm": ">=10.x"
   },
   "keywords": [
-    "MIME types",
-    "mime types",
-    "constants",
-    "MIME",
-    "file types",
-    "type",
-    "types",
-    "extension",
-    "file",
-    "mime",
-    "lite",
-    "mime-db",
-    "mimetypes"
+    "node",
+    "http",
+    "apache",
+    "HttpStatus",
+    "httpclient",
+    "status codes",
+    "status",
+    "codes",
+    "typescript",
+    "module"
   ],
   "author": {
     "name": "Mohammad Montasim -Al- Mamun Shuvo",
