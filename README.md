@@ -1,12 +1,40 @@
 # http-status-lite
 
-A collection of commonly used HTTP status codes for applications. This package helps standardize HTTP status code handling in your project by providing a predefined, immutable set of constants.
+<!-- repository summary badges start -->
+<div>
+    <img alt="NPM Version" src="https://badgen.net/npm/v/http-status-lite?label=version&labelColor=EB008B&color=00B8B5">
+    <img alt="NPM Downloads" src="https://badgen.net/npm/dm/http-status-lite?label=downloads&labelColor=EB008B&color=00B8B5">
+    <img alt="NPM Package" src="https://badgen.net/npm/license/http-status-lite?label=license&labelColor=EB008B&color=00B8B5">
+</div>
+<!-- repository summary badges end -->
+
+The [http-status-lite](https://www.npmjs.com/package/http-status-lite) is a lightweight and comprehensive utility providing standardized HTTP status codes for applications. It simplifies the handling of HTTP response codes by offering predefined constants, ensuring clarity and consistency in API responses.
+
+## Table of Contents
+
+- [Key Features](#key-features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [HTTP Status Code Categories](#http-status-code-categories)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [FAQs](#faqs)
 
 ---
 
-### 🚀 Installation
+## Key Features
 
-To install the package in your project, run:
+1. **Predefined HTTP Status Codes:** Provides a comprehensive set of HTTP status codes for easy reference.
+2. **TypeScript Support:** Includes strong type definitions for enhanced code safety and developer experience.
+3. **Immutable Constants:** Ensures status codes cannot be modified, preventing unintended changes.
+4. **Lightweight & Efficient:** Minimal footprint with high performance.
+5. **Easy Integration:** Seamlessly integrates with any Node.js or TypeScript-based project.
+
+---
+
+## Installation
+
+To install the package, run the following command:
 
 ```bash
 npm install http-status-lite
@@ -14,128 +42,124 @@ npm install http-status-lite
 
 ---
 
-### 🛠️ Usage
+## Usage
 
-1. **Import the Constants:**
+### 1. Importing the Constants
 
-    You can import all HTTP status code constants into your project:
+```javascript
+import httpStatusLite from 'http-status-lite';
 
-    ```javascript
-    import httpStatusLite from 'http-status-lite';
+console.log(httpStatusLite.OK); // Outputs: 200
+```
 
-    console.log(httpStatusLite.OK); // Outputs: 200
-    ```
+### 2. TypeScript Support
 
-2. **TypeScript Support:**
+```typescript
+import httpStatusLite, { HttpStatusType } from 'http-status-lite';
 
-    The package includes TypeScript types for strict type checking:
+const successStatus: HttpStatusType = 'OK';
+console.log(httpStatusLite[successStatus]); // Outputs: 200
+```
 
-    ```typescript
-    import httpStatusLite, { HttpStatusType } from 'http-status-lite';
+### 3. Example Usage in an Express.js Application
 
-    const successStatus: HttpStatusType = 'OK';
-    console.log(httpStatusLite[successStatus]); // Outputs: 200
-    ```
+```javascript
+import httpStatusLite from 'http-status-lite';
+const express = require('express');
+const app = express();
 
-3. **Example Usage in a Node.js Server:**
+app.get('/status', (req, res) => {
+    res.status(httpStatusLite.OK).json({ message: 'Server is running!' });
+});
 
-    ```javascript
-    import httpStatusLite from 'http-status-lite';
-
-    const express = require('express');
-    const app = express();
-
-    app.get('/status', (req, res) => {
-        res.status(httpStatusLite.OK).json({ message: 'All good!' });
-    });
-
-    app.listen(3000, () => console.log('Server running on port 3000'));
-    ```
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
 
 ---
 
-### HTTP Status Code Categories
+## HTTP Status Code Categories
 
-- **Informational (100–199):**
+### **Informational Responses (100–199)**
 
-    - `CONTINUE`: 100
-    - `SWITCHING_PROTOCOLS`: 101
-    - `PROCESSING`: 102
-    - `EARLY_HINTS`: 103
+- `CONTINUE`: 100
+- `SWITCHING_PROTOCOLS`: 101
+- `PROCESSING`: 102
+- `EARLY_HINTS`: 103
 
-- **Successful (200–299):**
+### **Successful Responses (200–299)**
 
-    - `OK`: 200
-    - `CREATED`: 201
-    - `ACCEPTED`: 202
-    - `NON_AUTHORITATIVE_INFORMATION`: 203
-    - `NO_CONTENT`: 204
-    - `RESET_CONTENT`: 205
-    - `PARTIAL_CONTENT`: 206
-    - `MULTI_STATUS`: 207
-    - `ALREADY_REPORTED`: 208
-    - `IM_USED`: 226
+- `OK`: 200
+- `CREATED`: 201
+- `ACCEPTED`: 202
+- `NO_CONTENT`: 204
+- `PARTIAL_CONTENT`: 206
 
-- **Redirection (300–399):**
+### **Redirection Messages (300–399)**
 
-    - `MULTIPLE_CHOICES`: 300
-    - `MOVED_PERMANENTLY`: 301
-    - `FOUND`: 302
-    - `SEE_OTHER`: 303
-    - `NOT_MODIFIED`: 304
-    - `USE_PROXY`: 305 (Deprecated)
-    - `UNUSED`: 306
-    - `TEMPORARY_REDIRECT`: 307
-    - `PERMANENT_REDIRECT`: 308
+- `MULTIPLE_CHOICES`: 300
+- `MOVED_PERMANENTLY`: 301
+- `FOUND`: 302
+- `SEE_OTHER`: 303
+- `TEMPORARY_REDIRECT`: 307
+- `PERMANENT_REDIRECT`: 308
 
-- **Client Error (400–499):**
+### **Client Error Responses (400–499)**
 
-    - `BAD_REQUEST`: 400
-    - `UNAUTHORIZED`: 401
-    - `PAYMENT_REQUIRED`: 402
-    - `FORBIDDEN`: 403
-    - `NOT_FOUND`: 404
-    - `METHOD_NOT_ALLOWED`: 405
-    - `NOT_ACCEPTABLE`: 406
-    - `PROXY_AUTHENTICATION_REQUIRED`: 407
-    - `REQUEST_TIMEOUT`: 408
-    - `CONFLICT`: 409
-    - `GONE`: 410
-    - `LENGTH_REQUIRED`: 411
-    - `PRECONDITION_FAILED`: 412
-    - `PAYLOAD_TOO_LARGE`: 413
-    - `URI_TOO_LONG`: 414
-    - `UNSUPPORTED_MEDIA_TYPE`: 415
-    - `RANGE_NOT_SATISFIABLE`: 416
-    - `EXPECTATION_FAILED`: 417
-    - `IM_A_TEAPOT`: 418
-    - `MISDIRECTED_REQUEST`: 421
-    - `UNPROCESSABLE_ENTITY`: 422
-    - `LOCKED`: 423
-    - `FAILED_DEPENDENCY`: 424
-    - `TOO_EARLY`: 425
-    - `UPGRADE_REQUIRED`: 426
-    - `PRECONDITION_REQUIRED`: 428
-    - `TOO_MANY_REQUESTS`: 429
-    - `REQUEST_HEADER_FIELDS_TOO_LARGE`: 431
-    - `UNAVAILABLE_FOR_LEGAL_REASONS`: 451
+- `BAD_REQUEST`: 400
+- `UNAUTHORIZED`: 401
+- `FORBIDDEN`: 403
+- `NOT_FOUND`: 404
+- `METHOD_NOT_ALLOWED`: 405
+- `TOO_MANY_REQUESTS`: 429
+- `UNAVAILABLE_FOR_LEGAL_REASONS`: 451
 
-- **Server Error (500–599):**
-    - `INTERNAL_SERVER_ERROR`: 500
-    - `NOT_IMPLEMENTED`: 501
-    - `BAD_GATEWAY`: 502
-    - `SERVICE_UNAVAILABLE`: 503
-    - `GATEWAY_TIMEOUT`: 504
-    - `HTTP_VERSION_NOT_SUPPORTED`: 505
-    - `VARIANT_ALSO_NEGOTIATES`: 506
-    - `INSUFFICIENT_STORAGE`: 507
-    - `LOOP_DETECTED`: 508
-    - `NOT_EXTENDED`: 510
-    - `NETWORK_AUTHENTICATION_REQUIRED`: 511
+### **Server Error Responses (500–599)**
+
+- `INTERNAL_SERVER_ERROR`: 500
+- `NOT_IMPLEMENTED`: 501
+- `BAD_GATEWAY`: 502
+- `SERVICE_UNAVAILABLE`: 503
+- `GATEWAY_TIMEOUT`: 504
 
 ---
 
-### 📖 Author
+## License
+
+This project is licensed under the `CC BY-NC-ND 4.0`.
+
+---
+
+## Acknowledgments
+
+Special thanks to the following resources:
+
+1. **MDN Web Docs** - Comprehensive HTTP status code references.
+2. **Node.js Express Documentation** - Guidance on handling HTTP responses.
+3. **TypeScript Docs** - Best practices for defining and using type-safe constants.
+
+---
+
+## FAQs
+
+### 1. **How do I determine the correct HTTP status code for my response?**
+
+HTTP status codes are categorized based on their meaning. Informational (100s), Success (200s), Redirection (300s), Client Errors (400s), and Server Errors (500s). Choose the appropriate category based on your response type.
+
+### 2. **Can I extend this library with custom status codes?**
+
+No, the constants are immutable and follow the official HTTP status codes. If needed, you can create a wrapper module to include your custom codes.
+
+### 3. **How do I uninstall the package?**
+
+You can remove the package by running:
+
+```bash
+npm uninstall http-status-lite
+```
+
+---
+
+## Author
 
 <table>
   <tr>
