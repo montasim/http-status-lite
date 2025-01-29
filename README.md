@@ -4,14 +4,6 @@ A collection of commonly used HTTP status codes for applications. This package h
 
 ---
 
-### Requirements to Use the Package
-
-- [NodeJS](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/)
-- [TypeScript](https://www.typescriptlang.org/) (optional but recommended)
-
----
-
 ### 🚀 Installation
 
 To install the package in your project, run:
