@@ -1,6 +1,6 @@
 {
   "name": "http-status-lite",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A collection of commonly used HTTP status codes for applications.",
   "type": "module",
   "main": "build/index.js",
