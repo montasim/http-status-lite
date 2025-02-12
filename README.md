@@ -44,24 +44,29 @@ npm install http-status-lite
 
 ## Usage
 
-### 1. Importing the Constants
+### CommonJS
+
+```javascript
+const httpStatusLite = require('http-status-lite');
+
+console.log(httpStatusLite.OK); // Outputs: 200
+```
+
+### Module (ESM)
 
 ```javascript
 import httpStatusLite from 'http-status-lite';
 
 console.log(httpStatusLite.OK); // Outputs: 200
-```
 
-### 2. TypeScript Support
-
-```typescript
+// TypeScript example:
 import httpStatusLite, { HttpStatusType } from 'http-status-lite';
 
 const successStatus: HttpStatusType = 'OK';
 console.log(httpStatusLite[successStatus]); // Outputs: 200
 ```
 
-### 3. Example Usage in an Express.js Application
+### Example Usage in an Express.js Application (ESM)
 
 ```javascript
 import httpStatusLite from 'http-status-lite';
