@@ -3,9 +3,16 @@
   "version": "0.1.6",
   "description": "A collection of commonly used HTTP status codes for applications.",
   "type": "module",
-  "main": "build/index.js",
+  "main": "./build/cjs/index.cjs",
+  "module": "./build/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./build/esm/index.js",
+      "require": "./build/cjs/index.cjs"
+    }
+  },
   "engines": {
-    "node": ">=20.x",
+    "node": ">=23.x",
     "npm": ">=10.x"
   },
   "keywords": [
