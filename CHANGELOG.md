@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.7 (2025-02-12)
+
+
+### Features
+
+* add commonjs support ([dd99b33](https://github.com/montasim/http-status-lite/commit/dd99b33b3ac642e4131933042803395a9a15fa68))
+
 ### 0.1.6 (2025-02-04)
 
 ### 0.1.5 (2025-01-29)
