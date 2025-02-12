@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.8 (2025-02-12)
+
+
+### Features
+
+* merge with origin/main ([dd75bca](https://github.com/montasim/http-status-lite/commit/dd75bca6c9b006a43cb236b12e8759558bac6d2c))
+
 ### 0.1.7 (2025-02-12)
 
 
