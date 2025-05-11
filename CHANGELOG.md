@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/montasim/http-status-lite/compare/v0.1.9...v0.1.11) (2025-05-11)
+
+
+### Bug Fixes
+
+* build issue ([91d9e6d](https://github.com/montasim/http-status-lite/commit/91d9e6d4d342aa1daa7945c945d7e6b5c5143a48))
+* build issue ([cc93ac4](https://github.com/montasim/http-status-lite/commit/cc93ac432fb0f74f0c7d1155aaadee6f0b4db8c3))
+
+
+### Code Refactoring
+
+* code structure ([3096c27](https://github.com/montasim/http-status-lite/commit/3096c2785a1777fe9ec8ced8b7ecd47218228ae3))
+
 ### [0.1.10](https://github.com/montasim/http-status-lite/compare/v0.1.9...v0.1.10) (2025-05-11)
 
 
