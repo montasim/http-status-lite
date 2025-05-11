@@ -1,48 +1,74 @@
 {
-  "name": "http-status-lite",
-  "version": "0.1.9",
-  "description": "A collection of commonly used HTTP status codes for applications.",
+  "name": "mime-types-lite",
+  "version": "1.6.1",
+  "description": "A collection of common MIME types for use in applications.",
   "type": "module",
-  "main": "./build/cjs/index.cjs",
-  "module": "./build/esm/index.js",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
-      "import": "./build/esm/index.js",
-      "require": "./build/cjs/index.cjs"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs"
     }
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "engines": {
     "node": ">=23.x",
     "npm": ">=10.x"
   },
   "keywords": [
-    "http status",
-    "http-status",
-    "httpstatuss",
-    "http status constants",
-    "http status library",
-    "http status utility",
-    "http status definitions",
-    "http status enum",
-    "http status mapping",
-    "HTTP http status",
-    "web development http status",
-    "API http status",
-    "TypeScript http status",
-    "Node.js http status",
-    "JavaScript http status",
-    "web application http status",
-    "application http status",
-    "common http status",
-    "standard http status",
-    "predefined http status",
-    "immutable http status",
-    "lightweight http status",
-    "efficient http status",
-    "cross-platform http status",
-    "open source http status",
+    "mime types",
+    "mime-types",
+    "mimetypes",
+    "MIME types",
+    "media types",
+    "media-type",
+    "file types",
+    "file-format",
+    "mime type constants",
+    "mime type library",
+    "mime type utility",
+    "mime type definitions",
+    "mime type enum",
+    "mime type mapping",
+    "HTTP mime types",
+    "web development mime types",
+    "API mime types",
+    "file processing mime types",
+    "data serialization mime types",
+    "data interchange mime types",
+    "TypeScript mime types",
+    "Node.js mime types",
+    "JavaScript mime types",
+    "web application mime types",
+    "mime negotiation",
+    "accept header",
+    "mime-type header",
+    "file upload mime types",
+    "multipart form data",
+    "JSON mime type",
+    "XML mime type",
+    "HTML mime type",
+    "CSS mime type",
+    "image mime types",
+    "video mime types",
+    "audio mime types",
+    "text mime types",
+    "application mime types",
+    "common mime types",
+    "standard mime types",
+    "predefined mime types",
+    "immutable mime types",
+    "lightweight mime types",
+    "efficient mime types",
+    "cross-platform mime types",
+    "open source mime types",
     "npm package",
-    "http-status-lite",
+    "mime-types-lite",
     "montasim"
   ],
   "author": {
@@ -60,21 +86,17 @@
   "license": "CC BY-NC-ND 4.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/montasim/http-status-lite.git"
+    "url": "git+https://github.com/montasim/mime-types-lite.git"
   },
   "bugs": {
-    "url": "https://github.com/montasim/http-status-lite/issues"
+    "url": "https://github.com/montasim/mime-types-lite/issues"
   },
-  "homepage": "https://github.com/montasim/http-status-lite",
+  "homepage": "https://github.com/montasim/mime-types-lite",
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "build",
-    "README.md"
-  ],
   "scripts": {
-    "build": "eslint . --fix && prettier . --write && tsc && node scripts/compress.js",
+    "build": "eslint . --fix && prettier . --write && tsc --build && node scripts/compress.js",
     "test": "jest",
     "eslint:check": "eslint .",
     "eslint:fix": "eslint . --fix",
@@ -93,6 +115,7 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@eslint/js": "^9.19.0",
     "@types/jest": "^29.5.14",
+    "@types/node": "^22.15.17",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
     "esbuild": "^0.24.2",
@@ -108,6 +131,7 @@
     "standard-version": "^9.5.0",
     "terser": "^5.37.0",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
