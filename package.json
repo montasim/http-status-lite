@@ -1,6 +1,6 @@
 {
   "name": "http-status-lite",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "A collection of commonly used HTTP status codes for applications.",
   "engines": {
     "node": ">=20.x"
