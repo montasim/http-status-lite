@@ -40,11 +40,29 @@ To install the package, run the following command:
 npm install http-status-lite
 ```
 
+or
+
+```bash
+yarn add http-status-lite
+```
+
+or
+
+```bash
+pnpm add http-status-lite
+```
+
+or
+
+```bash
+bun add http-status-lite
+```
+
 ---
 
 ## Usage
 
-### CommonJS
+### JavaScript CommonJS Example
 
 ```javascript
 const httpStatusLite = require('http-status-lite');
@@ -52,32 +70,26 @@ const httpStatusLite = require('http-status-lite');
 console.log(httpStatusLite.OK); // Outputs: 200
 ```
 
-### Module (ESM)
+### JavaScript ESM Example
 
 ```javascript
 import httpStatusLite from 'http-status-lite';
 
 console.log(httpStatusLite.OK); // Outputs: 200
 
-// TypeScript example:
-import httpStatusLite, { HttpStatusType } from 'http-status-lite';
-
 const successStatus: HttpStatusType = 'OK';
 console.log(httpStatusLite[successStatus]); // Outputs: 200
 ```
 
-### Example Usage in an Express.js Application (ESM)
+### TypeScript ESM Example
 
-```javascript
-import httpStatusLite from 'http-status-lite';
-const express = require('express');
-const app = express();
+```typescript
+import httpStatusLite, { HttpStatusType } from 'http-status-lite';
 
-app.get('/status', (req, res) => {
-    res.status(httpStatusLite.OK).json({ message: 'Server is running!' });
-});
+console.log(httpStatusLite.OK); // Outputs: 200
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+const successStatus: HttpStatusType = 'OK';
+console.log(httpStatusLite[successStatus]); // Outputs: 200
 ```
 
 ---
@@ -174,6 +186,24 @@ You can remove the package by running:
 
 ```bash
 npm uninstall http-status-lite
+```
+
+or
+
+```bash
+yarn remove http-status-lite
+```
+
+or
+
+```bash
+pnpm remove http-status-lite
+```
+
+or
+
+```bash
+bun remove http-status-lite
 ```
 
 ---

@@ -1,20 +1,4 @@
 /**
- * @fileoverview Defines common HTTP status codes for use in API responses.
- * These status codes represent various states of HTTP responses and are
- * commonly used to communicate the result of API requests.
- * Adjust these codes as needed to align with the API's response requirements.
- *
- * @module src/httpStatusLite.js
- * @version 1.0.0
- * @license CC BY-NC-ND 4.0
- *
- * @contact Mohammad Montasim -Al- Mamun Shuvo
- * @created 2025-01-28
- * @contactEmail montasimmamun@gmail.com
- * @contactGithub https://github.com/montasim
- */
-
-/**
  * An object representing different HTTP status codes.
  * @enum {number}
  */

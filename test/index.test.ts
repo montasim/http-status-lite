@@ -1,26 +1,8 @@
-import { HttpStatusType } from '../src';
-
-/**
- * @fileoverview Unit tests for the httpStatusLite module.
- * These tests ensure that all HTTP status codes are correctly defined, immutable, and return expected values.
- * It also validates the TypeScript types and checks that invalid keys are not allowed.
- *
- * @module tests/httpStatusLite.test
- * @version 1.0.0
- * @license CC BY-NC-ND 4.0
- *
- * @contact Mohammad Montasim -Al- Mamun Shuvo
- * @created 2025-01-28
- * @contactEmail montasimmamun@gmail.com
- * @contactGithub https://github.com/montasim
- */
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const httpStatusLite = require('../src/index.cjs');
+import httpStatusLite, { HttpStatusType } from '../src/index';
 
 describe('httpStatusLite', () => {
     /**
-     * Ensures the HTTP status codes module is defined and immutable.
+     * Ensures the httpStatusLite module is defined and immutable.
      */
     it('should be defined and frozen', () => {
         expect(httpStatusLite).toBeDefined();
@@ -28,9 +10,9 @@ describe('httpStatusLite', () => {
     });
 
     /**
-     * Verifies correct HTTP status codes for informational responses (100–199).
+     * Verifies correct status codes for informational responses.
      */
-    it('should return correct HTTP status codes for informational responses', () => {
+    it('should return correct status codes for informational responses (1xx)', () => {
         expect(httpStatusLite.CONTINUE).toBe(100);
         expect(httpStatusLite.SWITCHING_PROTOCOLS).toBe(101);
         expect(httpStatusLite.PROCESSING).toBe(102);
@@ -38,9 +20,9 @@ describe('httpStatusLite', () => {
     });
 
     /**
-     * Verifies correct HTTP status codes for successful responses (200–299).
+     * Verifies correct status codes for successful responses.
      */
-    it('should return correct HTTP status codes for successful responses', () => {
+    it('should return correct status codes for successful responses (2xx)', () => {
         expect(httpStatusLite.OK).toBe(200);
         expect(httpStatusLite.CREATED).toBe(201);
         expect(httpStatusLite.ACCEPTED).toBe(202);
@@ -54,9 +36,9 @@ describe('httpStatusLite', () => {
     });
 
     /**
-     * Verifies correct HTTP status codes for redirection messages (300–399).
+     * Verifies correct status codes for redirection messages.
      */
-    it('should return correct HTTP status codes for redirection messages', () => {
+    it('should return correct status codes for redirection messages (3xx)', () => {
         expect(httpStatusLite.MULTIPLE_CHOICES).toBe(300);
         expect(httpStatusLite.MOVED_PERMANENTLY).toBe(301);
         expect(httpStatusLite.FOUND).toBe(302);
@@ -69,9 +51,9 @@ describe('httpStatusLite', () => {
     });
 
     /**
-     * Verifies correct HTTP status codes for client error responses (400–499).
+     * Verifies correct status codes for client error responses.
      */
-    it('should return correct HTTP status codes for client error responses', () => {
+    it('should return correct status codes for client error responses (4xx)', () => {
         expect(httpStatusLite.BAD_REQUEST).toBe(400);
         expect(httpStatusLite.UNAUTHORIZED).toBe(401);
         expect(httpStatusLite.PAYMENT_REQUIRED).toBe(402);
@@ -104,9 +86,9 @@ describe('httpStatusLite', () => {
     });
 
     /**
-     * Verifies correct HTTP status codes for server error responses (500–599).
+     * Verifies correct status codes for server error responses.
      */
-    it('should return correct HTTP status codes for server error responses', () => {
+    it('should return correct status codes for server error responses (5xx)', () => {
         expect(httpStatusLite.INTERNAL_SERVER_ERROR).toBe(500);
         expect(httpStatusLite.NOT_IMPLEMENTED).toBe(501);
         expect(httpStatusLite.BAD_GATEWAY).toBe(502);
@@ -121,25 +103,23 @@ describe('httpStatusLite', () => {
     });
 
     /**
-     * Validates that only valid keys are allowed as HTTP status type.
+     * Validates that only valid keys are allowed as HttpStatusType type.
      * Ensures TypeScript type safety for valid and invalid keys.
      */
-    it('should allow only valid keys as HTTP status type', () => {
-        const validStatus: HttpStatusType = 'OK';
-        expect(httpStatusLite[validStatus]).toBe(200);
+    it('should allow only valid keys as HttpStatusType type', () => {
+        const validStatusCode: HttpStatusType = 'OK';
+        expect(httpStatusLite[validStatusCode]).toBe(200);
 
         // @ts-expect-error This should throw a TypeScript error during compilation
-        const invalidStatus: HttpStatusType = 'INVALID';
+        const invalidStatusCode: HttpStatusType = 'INVALID';
         // Uncomment below to test runtime behavior if needed:
-        expect(httpStatusLite[invalidStatus]).toBeUndefined();
+        expect(httpStatusLite[invalidStatusCode]).toBeUndefined();
     });
 
     /**
-     * Creates a snapshot of the entire HTTP status codes object for consistency checks.
+     * Creates a snapshot of the entire httpStatusLite object for consistency checks.
      */
     it('should match snapshot for the entire constants object', () => {
         expect(httpStatusLite).toMatchSnapshot();
     });
 });
-
-export default httpStatusLite;
