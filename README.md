@@ -10,6 +10,10 @@
 
 The [http-status-lite](https://www.npmjs.com/package/http-status-lite) is a lightweight and comprehensive utility providing standardized HTTP status codes for applications. It simplifies the handling of HTTP response codes by offering predefined constants, ensuring clarity and consistency in API responses.
 
+<div>
+    <a href="https://http-status-lite-demo.netlify.app/">🌐 Live Demo</a>
+</div>
+
 ## Table of Contents
 
 - [Key Features](#key-features)
