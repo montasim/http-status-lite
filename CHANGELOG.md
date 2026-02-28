@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.15 (2026-02-28)
+
+
+### Features
+
+* add peer property to dependencies in package-lock.json and update README with live demo link ([bc0a6e5](https://github.com/montasim/http-status-lite/commit/bc0a6e5236f7cafc34b3faab5d281fb37d6778b2))
+
 ### 0.1.14 (2025-07-25)
 
 
