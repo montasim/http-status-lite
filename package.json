@@ -47,7 +47,7 @@
         "utility"
     ],
     "author": "",
-    "license": "MIT",
+    "license": "CC BY-NC-ND 4.0",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/montasim/http-status-lite.git"
