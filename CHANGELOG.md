@@ -7,15 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.0.0] - 2026-03-27
+## [2.0.0] - 2026-03-27
 
 ### Changed
+
 - Complete project refresh with latest industry-standard tooling
 - Updated all dependencies to latest versions
 - Simplified ESLint configuration (removed @eslint/js dependency)
 - Improved CI/CD workflow
 
 ### Added
+
 - Standard-version for automated versioning
 - Comprehensive GitHub templates (issues, PRs)
 - Enhanced documentation with SECURITY.md, CONTRIBUTING.md
