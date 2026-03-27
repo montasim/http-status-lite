@@ -6,6 +6,7 @@
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/http-status-lite)](https://bundlephobia.com/result?p=http-status-lite)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://http-status-lite-demo.netlify.app)
 
 ## Features
 
@@ -439,6 +440,13 @@ npm run dev
 MIT © [Your Name]
 
 See [LICENSE](LICENSE) for the full text.
+
+## Links
+
+- [npm Package](https://www.npmjs.com/package/http-status-lite)
+- [GitHub Repository](https://github.com/montasim/http-status-lite)
+- [Live Demo & Documentation](https://http-status-lite-demo.netlify.app) - Interactive demo with all status codes
+- [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml)
 
 ## Acknowledgments
 

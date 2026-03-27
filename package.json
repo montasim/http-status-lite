@@ -52,6 +52,7 @@
         "type": "git",
         "url": "git+https://github.com/montasim/http-status-lite.git"
     },
+    "homepage": "https://http-status-lite-demo.netlify.app/",
     "devDependencies": {
         "@commitlint/cli": "20.5.0",
         "@commitlint/config-conventional": "20.5.0",
