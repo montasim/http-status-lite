@@ -19,10 +19,13 @@
         }
     },
     "files": [
-        "dist",
+        "dist/index.js",
+        "dist/index.cjs",
+        "dist/index.d.ts",
         "README.md",
         "LICENSE"
     ],
+    "sideEffects": false,
     "scripts": {
         "build": "tsup",
         "dev": "tsup --watch",
