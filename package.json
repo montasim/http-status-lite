@@ -1,6 +1,6 @@
 {
     "name": "http-status-lite",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "description": "Lightweight, type-safe HTTP status codes utility",
     "type": "module",
     "main": "./dist/index.cjs",

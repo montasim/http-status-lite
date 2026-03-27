@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.2.0 (2026-03-27)
+
+### Features
+
+- optimize bundle size and improve tree-shaking ([b552622](https://github.com/montasim/http-status-lite/commits/b552622fe4e9ed7aea769e0861e9af37872d5028))
+
+### Documentation
+
+- add demo website reference to package.json and README ([97ef8c2](https://github.com/montasim/http-status-lite/commits/97ef8c235c2fd690dac12d887cc71c17974b3bd3))
+
+### Chore
+
+- change license from MIT to CC BY-NC-ND 4.0 ([4e27b75](https://github.com/montasim/http-status-lite/commits/4e27b75943f822d22ca240fae034dcfc62438ac1))
+- **release:** 2.1.0 ([0d577c8](https://github.com/montasim/http-status-lite/commits/0d577c8cb6caed76c4dd0bde3cb7f0367d7ab357))
+- rollback version from 3.0.0 to 2.0.0 ([1dedf35](https://github.com/montasim/http-status-lite/commits/1dedf35f54b5b6583b9de5c204cb5f1d05a08a49))
+
 ## 2.1.0 (2026-03-27)
 
 ### Features
