@@ -92,8 +92,7 @@
     "license": "MIT",
     "publishConfig": {
         "access": "public",
-        "provenance": true,
-        "tag": "next"
+        "provenance": true
     },
     "repository": {
         "type": "git",
