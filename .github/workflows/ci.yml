@@ -11,31 +11,51 @@ permissions:
 
 jobs:
     verify:
-        name: Node.js ${{ matrix.node-version }}
+        name: Source and package verification
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: 24.x
+                  cache: npm
+            - run: npm ci
+            - run: npm run check
+            - name: Build release tarball
+              run: |
+                  mkdir artifact
+                  npm pack --ignore-scripts --pack-destination artifact
+            - uses: actions/upload-artifact@v7
+              with:
+                  name: npm-package
+                  path: artifact/*.tgz
+                  if-no-files-found: error
+
+    runtime:
+        name: Packed runtime on Node.js ${{ matrix.node-version }}
+        needs: verify
         runs-on: ubuntu-latest
         strategy:
             fail-fast: false
             matrix:
-                node-version: [18.x, 20.x, 22.x]
+                node-version: [18.x, 20.x, 22.x, 24.x]
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v7
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: npm
-            - run: npm ci
-            - run: npm run lint
-            - run: npm run format
-            - run: npm test
-
-    package:
-        name: Published package smoke test
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/download-artifact@v8
               with:
-                  node-version: 22.x
-                  cache: npm
-            - run: npm ci
-            - run: npm run test:all
+                  name: npm-package
+                  path: artifact
+            - name: Install packed package
+              run: |
+                  mkdir consumer
+                  cd consumer
+                  npm init --yes
+                  npm install --ignore-scripts --no-audit --no-fund ../artifact/http-status-lite-1.8.0.tgz
+            - name: Test ESM
+              working-directory: consumer
+              run: node --input-type=module --eval "import { Status, getStatus } from 'http-status-lite'; if (Status.OK !== 200 || getStatus(404).name !== 'NOT_FOUND') process.exit(1)"
+            - name: Test CommonJS
+              working-directory: consumer
+              run: node --input-type=commonjs --eval "const { Status } = require('http-status-lite'); if (Status.OK !== 200) process.exit(1)"
