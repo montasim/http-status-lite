@@ -1,0 +1,24 @@
+name: Release to npm
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    id-token: write
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: 24.x
+                  registry-url: https://registry.npmjs.org
+                  package-manager-cache: false
+            - run: npm ci
+            - run: npm run check
+            - run: npm publish --access public --provenance
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

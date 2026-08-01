@@ -1,7 +1,7 @@
 {
     "name": "http-status-lite",
-    "version": "2.2.0",
-    "description": "Lightweight, type-safe HTTP status codes utility",
+    "version": "2.3.0",
+    "description": "Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers",
     "type": "module",
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
@@ -13,68 +13,107 @@
                 "default": "./dist/index.js"
             },
             "require": {
-                "types": "./dist/index.d.ts",
+                "types": "./dist/index.d.cts",
                 "default": "./dist/index.cjs"
             }
-        }
+        },
+        "./codes": {
+            "import": {
+                "types": "./dist/codes.d.ts",
+                "default": "./dist/codes.js"
+            },
+            "require": {
+                "types": "./dist/codes.d.cts",
+                "default": "./dist/codes.cjs"
+            }
+        },
+        "./predicates": {
+            "import": {
+                "types": "./dist/predicates.d.ts",
+                "default": "./dist/predicates.js"
+            },
+            "require": {
+                "types": "./dist/predicates.d.cts",
+                "default": "./dist/predicates.cjs"
+            }
+        },
+        "./metadata": {
+            "import": {
+                "types": "./dist/metadata.d.ts",
+                "default": "./dist/metadata.js"
+            },
+            "require": {
+                "types": "./dist/metadata.d.cts",
+                "default": "./dist/metadata.cjs"
+            }
+        },
+        "./package.json": "./package.json"
     },
     "files": [
-        "dist/index.js",
-        "dist/index.cjs",
-        "dist/index.d.ts",
+        "dist",
         "README.md",
-        "LICENSE"
+        "LICENSE",
+        "SECURITY.md"
     ],
     "sideEffects": false,
+    "engines": {
+        "node": ">=18"
+    },
     "scripts": {
         "build": "tsup",
         "dev": "tsup --watch",
-        "test": "npm run build && node --test test/index.test.js",
-        "prepublishOnly": "npm run build && npm test",
+        "generate": "node scripts/generate-registry.mjs",
+        "generate:check": "node scripts/generate-registry.mjs --check",
+        "registry:update": "node scripts/update-registry.mjs && npm run generate",
+        "typecheck": "tsc --noEmit",
+        "test:runtime": "node --test test/*.test.js",
+        "test:size": "node scripts/check-size.mjs",
+        "test:package": "node scripts/test-package.mjs",
+        "test": "npm run generate:check && npm run typecheck && npm run build && npm run test:runtime && npm run test:size",
+        "test:all": "npm test && npm run test:package",
+        "prepack": "npm run test",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
-        "commit": "git-cz",
-        "prepare": "husky",
-        "release": "standard-version"
+        "check": "npm run lint && npm run format && npm run test:all",
+        "prepare": "husky"
     },
     "keywords": [
         "http",
         "status",
-        "codes",
+        "status-code",
         "typescript",
-        "utility"
+        "iana",
+        "fetch",
+        "node"
     ],
-    "author": "",
-    "license": "CC BY-NC-ND 4.0",
+    "author": "Montasim",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/montasim/http-status-lite.git"
+    },
+    "bugs": {
+        "url": "https://github.com/montasim/http-status-lite/issues"
     },
     "homepage": "https://http-status-lite-demo.netlify.app/",
     "devDependencies": {
         "@commitlint/cli": "20.5.0",
         "@commitlint/config-conventional": "20.5.0",
-        "@typescript-eslint/eslint-plugin": "^8.0.0",
-        "@typescript-eslint/parser": "^8.0.0",
-        "commitizen": "4.3.1",
-        "cz-conventional-changelog": "^3.3.0",
-        "eslint": "10.1.0",
+        "eslint": "9.39.2",
         "eslint-config-prettier": "10.1.8",
-        "eslint-plugin-eslint-comments": "^3.2.0",
-        "eslint-plugin-prettier": "5.5.5",
-        "husky": "^9.0.0",
+        "husky": "9.1.7",
         "lint-staged": "16.4.0",
-        "prettier": "^3.0.0",
-        "standard-version": "9.5.0",
-        "tsup": "^8.0.0",
-        "typescript": "^5.3.0",
+        "prettier": "3.8.1",
+        "tsup": "8.5.1",
+        "typescript": "5.9.3",
         "typescript-eslint": "8.57.2"
     },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
+    "overrides": {
+        "esbuild": "0.28.1"
     }
 }

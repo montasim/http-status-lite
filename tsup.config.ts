@@ -1,7 +1,12 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-    entry: ['src/index.ts'],
+    entry: {
+        index: 'src/index.ts',
+        codes: 'src/codes.ts',
+        predicates: 'src/predicates.ts',
+        metadata: 'src/metadata.ts',
+    },
     format: ['esm', 'cjs'],
     dts: true,
     clean: true,
@@ -10,14 +15,4 @@ export default defineConfig({
     splitting: false,
     minify: true,
     treeshake: true,
-    esbuildOptions(options) {
-        options.drop = ['console', 'debugger'];
-        options.treeShaking = true;
-        options.mangleProps = /^_/;
-        options.mangleQuoted = false;
-        options.reserveProps = /^__/;
-        options.minifyIdentifiers = true;
-        options.minifySyntax = true;
-        options.minifyWhitespace = true;
-    },
 });

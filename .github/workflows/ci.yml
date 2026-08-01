@@ -6,66 +6,56 @@ on:
     pull_request:
         branches: [main]
 
+permissions:
+    contents: read
+
 jobs:
-    test:
-        name: Test and Lint
+    verify:
+        name: Source and package verification
         runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                node-version: [18.x, 20.x, 22.x]
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version: 24.x
+                  cache: npm
+            - run: npm ci
+            - run: npm run check
+            - name: Build release tarball
+              run: |
+                  mkdir artifact
+                  npm pack --ignore-scripts --pack-destination artifact
+            - uses: actions/upload-artifact@v7
+              with:
+                  name: npm-package
+                  path: artifact/*.tgz
+                  if-no-files-found: error
 
-            - name: Setup Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
+    runtime:
+        name: Packed runtime on Node.js ${{ matrix.node-version }}
+        needs: verify
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                node-version: [18.x, 20.x, 22.x, 24.x]
+        steps:
+            - uses: actions/setup-node@v7
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
-
-            - name: Install dependencies
-              run: npm ci
-
-            - name: Run linter
-              run: npm run lint
-
-            - name: Check formatting
-              run: npm run format
-
-            - name: Build package
-              run: npm run build
-
-            - name: Run tests
-              run: npm test
-
-    validate:
-        name: Validate Package
-        runs-on: ubuntu-latest
-
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - uses: actions/download-artifact@v8
               with:
-                  node-version: '22.x'
-                  cache: 'npm'
-
-            - name: Install dependencies
-              run: npm ci
-
-            - name: Build package
-              run: npm run build
-
-            - name: Check package exports
+                  name: npm-package
+                  path: artifact
+            - name: Install packed package
               run: |
-                  node -e "import('./dist/index.js').then(m => console.log('ESM import: OK'))"
-                  node -e "const m = require('./dist/index.cjs'); console.log('CJS import: OK')"
-
-            - name: Check type definitions
-              run: |
-                  [ -f dist/index.d.ts ] && echo "TypeScript definitions: OK" || exit 1
-                  [ -f dist/index.d.cts ] && echo "TypeScript declarations: OK" || exit 1
+                  mkdir consumer
+                  cd consumer
+                  npm init --yes
+                  npm install --ignore-scripts --no-audit --no-fund ../artifact/http-status-lite-2.3.0.tgz
+            - name: Test ESM
+              working-directory: consumer
+              run: node --input-type=module --eval "import { Status, getStatus } from 'http-status-lite'; if (Status.OK !== 200 || getStatus(404).name !== 'NOT_FOUND') process.exit(1)"
+            - name: Test CommonJS
+              working-directory: consumer
+              run: node --input-type=commonjs --eval "const { Status } = require('http-status-lite'); if (Status.OK !== 200) process.exit(1)"

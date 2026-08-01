@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.3.0 (2026-08-01)
+
+### Features
+
+- rewrite the package around generated, literal-preserving registry data
+- add `Status`, named constants, exact status code/name unions, and typed lookups
+- add parsing, assertion, runtime type guards, and informational predicates
+- add optional standards lifecycle metadata and subpath exports
+- add current IANA entries and RFC 9110 terminology with legacy aliases
+
+### Reliability
+
+- add generation drift, compile-time, runtime, bundle-size, ESM, CommonJS, and packed-package tests
+- verify supported Node.js versions in CI
+- change the package license to MIT to permit broad open-source and commercial adoption
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## 2.2.0 (2026-03-27)
