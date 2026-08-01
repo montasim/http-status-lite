@@ -1,17 +1,15 @@
-import tseslint from 'typescript-eslint';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint';
 
 const configDirectory = dirname(fileURLToPath(import.meta.url));
 
 export default [
-    // TypeScript configs
+    {
+        ignores: ['dist/', 'node_modules/'],
+    },
     ...tseslint.configs.recommended,
-
-    // Prettier integration (must be last)
-    eslintPluginPrettierRecommended,
-
     {
         files: ['**/*.ts'],
         languageOptions: {
@@ -22,7 +20,6 @@ export default [
             },
         },
         rules: {
-            // TypeScript specific rules
             '@typescript-eslint/no-unused-vars': [
                 'warn',
                 {
@@ -32,17 +29,10 @@ export default [
                 },
             ],
             '@typescript-eslint/no-explicit-any': 'warn',
-            '@typescript-eslint/explicit-function-return-type': 'off',
-            '@typescript-eslint/explicit-module-boundary-types': 'off',
             '@typescript-eslint/no-non-null-assertion': 'warn',
-
-            // General rules
             'no-console': ['warn', { allow: ['warn', 'error'] }],
             'prefer-const': 'warn',
         },
     },
-
-    {
-        ignores: ['dist/', 'node_modules/', '*.config.js'],
-    },
+    eslintConfigPrettier,
 ];

@@ -22,12 +22,6 @@ Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
 npm install http-status-lite
 ```
 
-The `1.8.0` rewrite is published under the `next` dist-tag because npm already contains higher-numbered `2.x` releases:
-
-```sh
-npm install http-status-lite@next
-```
-
 ## Quick start
 
 ```ts

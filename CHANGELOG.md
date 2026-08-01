@@ -1,8 +1,6 @@
 # Changelog
 
-## 1.8.0 (2026-08-01)
-
-Published under the `next` npm dist-tag because previously published `2.x` versions have a higher semantic version.
+## 2.3.0 (2026-08-01)
 
 ### Features
 

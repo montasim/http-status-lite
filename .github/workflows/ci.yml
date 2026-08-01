@@ -2,9 +2,9 @@ name: CI
 
 on:
     push:
-        branches: [main, v2]
+        branches: [main]
     pull_request:
-        branches: [main, v2]
+        branches: [main]
 
 permissions:
     contents: read
@@ -52,7 +52,7 @@ jobs:
                   mkdir consumer
                   cd consumer
                   npm init --yes
-                  npm install --ignore-scripts --no-audit --no-fund ../artifact/http-status-lite-1.8.0.tgz
+                  npm install --ignore-scripts --no-audit --no-fund ../artifact/http-status-lite-2.3.0.tgz
             - name: Test ESM
               working-directory: consumer
               run: node --input-type=module --eval "import { Status, getStatus } from 'http-status-lite'; if (Status.OK !== 200 || getStatus(404).name !== 'NOT_FOUND') process.exit(1)"

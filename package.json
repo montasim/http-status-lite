@@ -1,6 +1,6 @@
 {
     "name": "http-status-lite",
-    "version": "1.8.0",
+    "version": "2.3.0",
     "description": "Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers",
     "type": "module",
     "main": "./dist/index.cjs",
@@ -65,7 +65,7 @@
         "generate": "node scripts/generate-registry.mjs",
         "generate:check": "node scripts/generate-registry.mjs --check",
         "registry:update": "node scripts/update-registry.mjs && npm run generate",
-        "typecheck": "tsc --noEmit && tsc -p test/tsconfig.json --noEmit",
+        "typecheck": "tsc --noEmit",
         "test:runtime": "node --test test/*.test.js",
         "test:size": "node scripts/check-size.mjs",
         "test:package": "node scripts/test-package.mjs",
@@ -91,8 +91,7 @@
     "author": "Montasim",
     "license": "MIT",
     "publishConfig": {
-        "access": "public",
-        "provenance": true
+        "access": "public"
     },
     "repository": {
         "type": "git",
@@ -105,12 +104,8 @@
     "devDependencies": {
         "@commitlint/cli": "20.5.0",
         "@commitlint/config-conventional": "20.5.0",
-        "@typescript-eslint/eslint-plugin": "8.57.2",
-        "@typescript-eslint/parser": "8.57.2",
         "eslint": "9.39.2",
         "eslint-config-prettier": "10.1.8",
-        "eslint-plugin-eslint-comments": "3.2.0",
-        "eslint-plugin-prettier": "5.5.5",
         "husky": "9.1.7",
         "lint-staged": "16.4.0",
         "prettier": "3.8.1",

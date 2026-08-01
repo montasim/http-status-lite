@@ -73,7 +73,7 @@ try {
     const packageJson = JSON.parse(
         await readFile(join(consumer, 'node_modules/http-status-lite/package.json'), 'utf8'),
     );
-    if (packageJson.version !== '1.8.0') throw new Error('Packed package has the wrong version.');
+    if (packageJson.version !== '2.3.0') throw new Error('Packed package has the wrong version.');
     console.log(
         `Packed package ${packageJson.version} passed ESM, CommonJS, and TypeScript consumer tests.`,
     );

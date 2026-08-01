@@ -1,8 +1,6 @@
 name: Release to npm
 
 on:
-    push:
-        tags: ['v*']
     workflow_dispatch:
 
 permissions:
@@ -12,16 +10,15 @@ permissions:
 jobs:
     publish:
         runs-on: ubuntu-latest
-        environment: npm
         steps:
             - uses: actions/checkout@v7
             - uses: actions/setup-node@v7
               with:
                   node-version: 24.x
                   registry-url: https://registry.npmjs.org
-                  cache: npm
+                  package-manager-cache: false
             - run: npm ci
             - run: npm run check
-            - run: npm publish --access public --provenance --tag next
+            - run: npm publish --access public --provenance
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
