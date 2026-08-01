@@ -2,70 +2,40 @@ name: CI
 
 on:
     push:
-        branches: [main]
+        branches: [main, v2]
     pull_request:
-        branches: [main]
+        branches: [main, v2]
+
+permissions:
+    contents: read
 
 jobs:
-    test:
-        name: Test and Lint
+    verify:
+        name: Node.js ${{ matrix.node-version }}
         runs-on: ubuntu-latest
-
         strategy:
+            fail-fast: false
             matrix:
                 node-version: [18.x, 20.x, 22.x]
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Setup Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v4
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
+                  cache: npm
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run format
+            - run: npm test
 
-            - name: Install dependencies
-              run: npm ci
-
-            - name: Run linter
-              run: npm run lint
-
-            - name: Check formatting
-              run: npm run format
-
-            - name: Build package
-              run: npm run build
-
-            - name: Run tests
-              run: npm test
-
-    validate:
-        name: Validate Package
+    package:
+        name: Published package smoke test
         runs-on: ubuntu-latest
-
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
               with:
-                  node-version: '22.x'
-                  cache: 'npm'
-
-            - name: Install dependencies
-              run: npm ci
-
-            - name: Build package
-              run: npm run build
-
-            - name: Check package exports
-              run: |
-                  node -e "import('./dist/index.js').then(m => console.log('ESM import: OK'))"
-                  node -e "const m = require('./dist/index.cjs'); console.log('CJS import: OK')"
-
-            - name: Check type definitions
-              run: |
-                  [ -f dist/index.d.ts ] && echo "TypeScript definitions: OK" || exit 1
-                  [ -f dist/index.d.cts ] && echo "TypeScript declarations: OK" || exit 1
+                  node-version: 22.x
+                  cache: npm
+            - run: npm ci
+            - run: npm run test:all

@@ -1,34 +1,20 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+## Supported versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
+| Version | Supported |
+| ------- | --------- |
+| 1.8.x   | Yes       |
+| Older   | No        |
 
-## Reporting a Vulnerability
+## Reporting a vulnerability
 
-If you discover a security vulnerability, please send an email to the package maintainer.
+Please use GitHub's private vulnerability reporting for this repository rather than opening a public issue:
 
-Please include:
+https://github.com/montasim/http-status-lite/security/advisories/new
 
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact
-- Suggested fix (if known)
+Include reproduction steps, expected impact, affected versions, and a suggested fix when available. You should receive an acknowledgement within 48 hours.
 
-We will respond within 48 hours and provide regular updates on our progress.
+## Security posture
 
-## Security Best Practices
-
-This package is a utility library with no network or file system access. However, we recommend:
-
-- Keep dependencies updated
-- Use `npm audit` to check for vulnerabilities
-- Review the code before using in production-critical applications
-
-## Security-Related Issues
-
-For security vulnerabilities, please **DO NOT** open a public issue. Instead, send an email directly to the maintainer.
-
-For non-sensitive security questions or concerns, feel free to open an issue.
+The published package has no runtime dependencies and performs no network, file-system, or process operations. Registry synchronization and package verification scripts are development-only and are not executed when applications import the package.

@@ -1,5 +1,9 @@
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const configDirectory = dirname(fileURLToPath(import.meta.url));
 
 export default [
     // TypeScript configs
@@ -14,7 +18,7 @@ export default [
             parser: tseslint.parser,
             parserOptions: {
                 projectService: true,
-                tsconfigRootDir: import.meta.dirname,
+                tsconfigRootDir: configDirectory,
             },
         },
         rules: {

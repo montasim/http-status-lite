@@ -1,105 +1,62 @@
 # Contributing to http-status-lite
 
-Thank you for your interest in contributing! We appreciate your help.
+Contributions are welcome when they preserve the package's focus: a small, accurate, framework-independent HTTP status utility.
 
-## Development Setup
+## Setup
 
-1. Clone and install:
-
-    ```bash
-    git clone https://github.com/montasim/http-status-lite.git
-    cd http-status-lite
-    npm install
-    ```
-
-2. Create a feature branch:
-
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
-
-3. Make changes and test:
-
-    ```bash
-    npm run build    # Build the package
-    npm test         # Run tests
-    npm run lint     # Check code quality
-    npm run format   # Check formatting
-    ```
-
-## Development Workflow
-
-### Making Changes
-
-1. **Write tests first** - Follow TDD principles
-2. **Implement your changes** - Keep code simple and focused
-3. **Add JSDoc comments** - Document public APIs with examples
-4. **Update tests** - Ensure all tests pass (23/23)
-5. **Update documentation** - Update README if needed
-
-### Code Style
-
-- Use TypeScript for all code
-- Follow existing formatting (Prettier)
-- Add JSDoc comments for public APIs
-- Keep functions small and focused
-- Use descriptive variable names
-
-### Commit Messages
-
-We use [conventional commits](https://www.conventionalcommits.org/):
-
-- `feat: add new feature`
-- `fix: resolve bug`
-- `docs: update readme`
-- `test: add tests for getStatus`
-- `refactor: simplify helper logic`
-
-Use `npm run commit` for an interactive commit experience.
-
-## Pull Requests
-
-1. **Keep PRs focused** - One feature or fix per PR
-2. **Update tests** - Ensure all tests pass
-3. **Update docs** - Update README/CHANGELOG if needed
-4. **Follow conventions** - Use conventional commits
-5. **Be patient** - We'll review as soon as possible
-
-### PR Checklist
-
-- [ ] Tests pass (`npm test`)
-- [ ] Linting passes (`npm run lint`)
-- [ ] Formatting passes (`npm run format`)
-- [ ] Added tests for new functionality
-- [ ] Updated documentation
-- [ ] Updated CHANGELOG.md (if applicable)
-
-## Project Structure
-
-```
-http-status-lite/
-├── src/              # Source code
-│   └── index.ts      # Main implementation
-├── test/             # Test files
-│   └── index.test.js # Test suite
-├── dist/             # Build output (generated)
-├── docs/             # Documentation (ignored in git)
-├── package.json
-├── tsconfig.json
-├── tsup.config.ts
-└── README.md
+```sh
+git clone https://github.com/montasim/http-status-lite.git
+cd http-status-lite
+npm ci
+npm run check
 ```
 
-## Adding New Features
+Use a focused branch and conventional commit messages such as `feat: add status parser` or `fix: preserve literal lookup type`.
 
-Before adding new features, please open an issue to discuss:
+## Before opening a pull request
 
-- The use case
-- Proposed API
-- Implementation approach
+- Explain the developer problem, not only the proposed API.
+- Add runtime tests for behavior changes.
+- Add compile-time assertions for type changes.
+- Update documentation for public API changes.
+- Run `npm run check` against the packed package.
+- Keep runtime dependencies at zero unless there is an exceptional, measured reason.
 
-This helps ensure the feature fits the project's goals.
+## Registry changes
 
-## Questions?
+The reviewable source of truth is [`registry/statuses.json`](registry/statuses.json). Do not edit `src/generated/` or `src/codes.ts` directly.
 
-Feel free to open an issue with any questions!
+To synchronize with IANA:
+
+```sh
+npm run registry:update
+npm run generate:check
+```
+
+Review lifecycle changes carefully. IANA can include temporary, obsolete, and unused values that should not be described as permanent standards.
+
+## Project structure
+
+```text
+registry/                 Reviewable IANA-derived source data
+scripts/                  Generation and release verification
+src/generated/            Generated core and metadata tables
+src/codes.ts              Generated constants and Status object
+src/lookup.ts             Typed forward and reverse lookups
+src/parsing.ts            Runtime parsing and assertion
+src/predicates.ts         Numeric range classification
+src/metadata.ts           Optional metadata entry point
+src/legacy.ts             Backward-compatible namespace
+test/                     Runtime and compile-time tests
+```
+
+## Design guidelines
+
+- Prefer explicit, composable functions over multi-purpose abstractions.
+- Preserve literal types across public APIs.
+- Distinguish registry membership from numeric range classification.
+- Put heavier or specialized data behind a subpath export.
+- Measure bundle changes and update budgets deliberately.
+- Avoid framework-specific runtime integrations; documentation examples are preferred.
+
+For a significant feature or breaking API change, open an issue first so the use case and tradeoffs can be discussed.

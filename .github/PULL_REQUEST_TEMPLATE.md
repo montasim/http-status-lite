@@ -16,7 +16,7 @@ Please include a summary of the changes and the related issue. Fixes #(issue_num
 Please describe the tests that you ran to verify your changes.
 
 - [ ] Added new tests
-- [ ] All existing tests pass (23/23)
+- [ ] All checks pass (`npm run check`)
 - [ ] Tested manually
 
 ## Checklist:
