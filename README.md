@@ -5,6 +5,7 @@ Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
 [![npm version](https://img.shields.io/npm/v/http-status-lite)](https://www.npmjs.com/package/http-status-lite)
 [![CI](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/http-status-lite)](LICENSE)
+[![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
 
 ## Why use it?
 
@@ -219,6 +220,12 @@ npm run check
 ```
 
 The full check covers linting, formatting, generation drift, compile-time type assertions, runtime behavior, bundle budgets, ESM/CommonJS exports, and the actual `npm pack` artifact.
+
+## Support
+
+If this project has been useful, you can support its continued maintenance:
+
+[![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
 
 ## License
 
