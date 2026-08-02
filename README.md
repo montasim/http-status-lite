@@ -1,3 +1,5 @@
+[![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
+
 # http-status-lite
 
 Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
@@ -5,7 +7,7 @@ Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
 [![npm version](https://img.shields.io/npm/v/http-status-lite)](https://www.npmjs.com/package/http-status-lite)
 [![CI](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/http-status-lite)](LICENSE)
-[![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
+
 
 ## Why use it?
 
