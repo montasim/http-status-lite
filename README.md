@@ -28,6 +28,8 @@ Explore all represented codes and runnable examples in the **[interactive refere
 npm install http-status-lite
 ```
 
+No environment variables, service accounts, runtime initialization, or peer dependencies are required.
+
 ## Quick start
 
 ```ts
@@ -257,11 +259,11 @@ The package follows semantic versioning. Treat removed exports or narrowed accep
 
 Issues and focused pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before editing registry data or generated exports, and run `npm run check` before submitting. Include an official standards reference for registry corrections.
 
+The repository does not currently include a separate code of conduct. Keep participation respectful, standards-focused, and scoped to observable package behavior.
+
 ## Support and security
 
 Use [GitHub Issues](https://github.com/montasim/http-status-lite/issues) for reproducible bugs and standards-registry discrepancies. Report vulnerabilities according to [SECURITY.md](SECURITY.md).
-
-Report vulnerabilities privately according to [SECURITY.md](SECURITY.md), not through a public issue.
 
 ## Funding
 
