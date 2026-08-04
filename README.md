@@ -10,6 +10,8 @@ Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
 
 Explore all represented codes and runnable examples in the **[interactive reference](https://http-status-lite-demo.netlify.app/)**.
 
+**[Install from npm](https://www.npmjs.com/package/http-status-lite) · [Browse the live docs](https://http-status-lite-demo.netlify.app/docs) · [Report an issue](https://github.com/montasim/http-status-lite/issues)**
+
 ## Why use it?
 
 - Exact `HttpStatusCode` and `HttpStatusName` unions generated from one registry snapshot
@@ -187,6 +189,8 @@ if (status === null) throw new Error('EXPECTED_STATUS must be a known HTTP statu
 
 ## Compatibility and migration
 
+`http-status-lite` supports Node.js 18 and newer, modern browsers, ESM, and CommonJS. The package publishes declarations and separate `codes`, `predicates`, and `metadata` entry points. It has no runtime dependencies; compatibility is verified against the packed npm artifact on Node.js 18, 20, 22, and 24 in CI.
+
 The original namespace remains supported:
 
 ```ts
@@ -218,21 +222,58 @@ A scheduled CI job compares the committed snapshot with IANA each month, making 
 ## Development
 
 ```sh
+git clone https://github.com/montasim/http-status-lite.git
+cd http-status-lite
 npm ci
 npm run check
 ```
 
 The full check covers linting, formatting, generation drift, compile-time type assertions, runtime behavior, bundle budgets, ESM/CommonJS exports, and the actual `npm pack` artifact.
 
-## Support
+## Release process
+
+Publishing is performed by the manual [release workflow](.github/workflows/release.yml). It installs the locked dependency tree, runs the complete check, and publishes to npm with provenance. Registry updates are a separate reviewed change: update the IANA snapshot, regenerate source, run `npm run check`, and document any compatibility alias or lifecycle change before publishing.
+
+The package follows semantic versioning. Treat removed exports or narrowed accepted values as breaking changes; additive status metadata and standards-snapshot updates still require release-note review because downstream behavior may change.
+
+## Project status and limitations
+
+- The represented registry is a committed snapshot, not a runtime request to IANA; the scheduled drift workflow reports when review is needed.
+- Range predicates classify integers by HTTP class even when the code is not a represented registry entry.
+- `418` remains available for compatibility while its metadata reports the current IANA lifecycle state.
+- The library provides protocol constants and metadata, not application-specific error handling or HTTP semantics enforcement.
+- Temporary registrations can change upstream and should be reviewed before being embedded into long-lived contracts.
+
+## Documentation
+
+- [Interactive reference and recipes](https://http-status-lite-demo.netlify.app/docs)
+- [Registry source](registry/statuses.json)
+- [Contribution guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [CI workflow](.github/workflows/ci.yml)
+- [Registry drift workflow](.github/workflows/registry.yml)
+
+## Contributing
+
+Issues and focused pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before editing registry data or generated exports, and run `npm run check` before submitting. Include an official standards reference for registry corrections.
+
+## Support and security
 
 Use [GitHub Issues](https://github.com/montasim/http-status-lite/issues) for reproducible bugs and standards-registry discrepancies. Report vulnerabilities according to [SECURITY.md](SECURITY.md).
 
-Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing the registry, generated exports, compatibility aliases, or package surface.
+Report vulnerabilities privately according to [SECURITY.md](SECURITY.md), not through a public issue.
+
+## Funding
 
 If this project has been useful, you can optionally support its continued maintenance:
 
 [![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
+
+Bug reports, standards references, documentation improvements, and code contributions are equally valuable forms of support.
+
+## Author
+
+Built and maintained by [Montasim](https://github.com/montasim).
 
 ## License
 
