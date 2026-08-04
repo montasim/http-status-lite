@@ -1,5 +1,3 @@
-[![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
-
 # http-status-lite
 
 Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
@@ -7,7 +5,10 @@ Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
 [![npm version](https://img.shields.io/npm/v/http-status-lite)](https://www.npmjs.com/package/http-status-lite)
 [![CI](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/http-status-lite)](LICENSE)
+[![Node.js](https://img.shields.io/node/v/http-status-lite)](package.json)
+[![Support on SupportKori](https://img.shields.io/badge/Support-SupportKori-FFDD00)](https://www.supportkori.com/montasim)
 
+Explore all represented codes and runnable examples in the **[interactive reference](https://http-status-lite-demo.netlify.app/)**.
 
 ## Why use it?
 
@@ -225,7 +226,11 @@ The full check covers linting, formatting, generation drift, compile-time type a
 
 ## Support
 
-If this project has been useful, you can support its continued maintenance:
+Use [GitHub Issues](https://github.com/montasim/http-status-lite/issues) for reproducible bugs and standards-registry discrepancies. Report vulnerabilities according to [SECURITY.md](SECURITY.md).
+
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing the registry, generated exports, compatibility aliases, or package surface.
+
+If this project has been useful, you can optionally support its continued maintenance:
 
 [![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
 
