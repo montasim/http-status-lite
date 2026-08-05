@@ -19,6 +19,7 @@
   <img src="https://img.shields.io/badge/statuses-64-2265e5" alt="64 represented HTTP status codes" />
   <img src="https://img.shields.io/badge/runtime_dependencies-0-169c62" alt="Zero runtime dependencies in http-status-lite" />
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-111a2c" alt="MIT license" /></a>
+  <a href="https://www.supportkori.com/montasim"><img src="https://img.shields.io/badge/Support-SupportKori-FFDD00" alt="Support on SupportKori" /></a>
 </p>
 
 ## About
@@ -99,7 +100,7 @@ pnpm check:web
 pnpm build:web
 ```
 
-`pnpm check` verifies formatting, ESLint, and strict TypeScript. `pnpm build` produces the client and server-rendered production bundles.
+`pnpm check:web` generates the route tree, verifies formatting, runs ESLint and strict TypeScript, and creates the production build. `pnpm build:web` builds the local package dependency before producing the client and server-rendered web bundles.
 
 ## Deploying to Netlify
 
@@ -147,10 +148,42 @@ The application uses feature-oriented modules and small, focused component inter
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for module boundaries and SOLID design decisions.
 
+## Project status and limitations
+
+- The site presents the registry snapshot committed with the local `http-status-lite` package; it does not fetch IANA data at runtime.
+- Temporary, obsolete, and unused registrations are shown according to package metadata and can change when the reviewed registry snapshot is updated.
+- Range predicates describe numeric HTTP classes and do not imply that every in-range number is a represented IANA entry.
+- The reference provides protocol constants, metadata, and examples rather than application-specific error-handling guidance.
+- Netlify availability and server rendering depend on the configured deployment platform; the published npm package remains independently usable.
+
 ## Related project
 
 - [`packages/http-status-lite`](../../packages/http-status-lite) — package source, API documentation, releases, and registry maintenance
 - [`http-status-lite` on npm](https://www.npmjs.com/package/http-status-lite) — published package
+
+## Support and security
+
+Use [GitHub Issues](https://github.com/montasim/http-status-lite/issues) for reproducible site bugs, documentation problems, and package feature requests. Include the affected route, browser, expected result, and actual result when reporting a web issue.
+
+Report vulnerabilities privately according to the package [security policy](../../packages/http-status-lite/SECURITY.md), not through a public issue.
+
+## Contributing
+
+Issues and focused pull requests are welcome. Read the repository [contribution guide](../../CONTRIBUTING.md), run `pnpm check:web` for web changes, and keep package data changes synchronized with the generated reference.
+
+The repository does not currently include a separate code of conduct. Keep participation respectful, standards-focused, and scoped to observable project behavior.
+
+## Funding
+
+Optional support helps fund hosting, standards tracking, compatibility testing, and continued maintenance of the package and reference site.
+
+[![Support http-status-lite on SupportKori](https://img.shields.io/badge/Support_http--status--lite-SupportKori-FFDD00?style=for-the-badge)](https://www.supportkori.com/montasim)
+
+Bug reports, standards references, documentation improvements, and code contributions are equally valuable ways to help.
+
+## Author
+
+Built and maintained by [Montasim](https://github.com/montasim).
 
 ## License
 

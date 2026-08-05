@@ -252,9 +252,15 @@ The package follows semantic versioning. Treat removed exports or narrowed accep
 
 Use [GitHub Issues](https://github.com/montasim/http-status-lite/issues) for reproducible bugs and standards-registry discrepancies. Do not report vulnerabilities publicly.
 
+The repository does not currently include a separate code of conduct. Keep participation respectful, standards-focused, and scoped to observable package behavior.
+
 ## Funding
 
-Optional support through [SupportKori](https://www.supportkori.com/montasim) helps fund standards tracking, compatibility testing, and continued maintenance. Bug reports, standards references, documentation improvements, and code contributions are equally valuable ways to help.
+Optional support helps fund standards tracking, compatibility testing, and continued maintenance.
+
+[![Support http-status-lite on SupportKori](https://img.shields.io/badge/Support_http--status--lite-SupportKori-FFDD00?style=for-the-badge)](https://www.supportkori.com/montasim)
+
+Bug reports, standards references, documentation improvements, and code contributions are equally valuable ways to help.
 
 ## Author
 
