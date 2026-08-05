@@ -3,11 +3,20 @@ node_modules/
 
 # Build outputs
 dist/
+dist-ssr/
 build/
+.output/
+.vinxi/
+.nitro/
+.tanstack/
+.wrangler/
 *.tsbuildinfo
 
-# Documentation
-docs/
+# Coverage and package artifacts
+coverage/
+.nyc_output/
+*.tgz
+artifact/
 
 # Logs
 *.log
@@ -16,30 +25,26 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Lock files (using npm)
-pnpm-lock.yaml
-yarn.lock
-bun.lockb
+# Environment files
+.env
+.env.local
+.env.*.local
 
-# Editor directories and files
+# Local tools and editors
+.netlify/
 .vscode/
 .idea/
 .DS_Store
 *.swp
 *.swo
 *~
+__unconfig*
+todos.json
 
-# Testing
-coverage/
-.nyc_output/
-
-# Package files
-*.tgz
-
-# Environment files
-.env
-.env.local
-.env.*.local
+# Lockfiles from package managers other than pnpm
+package-lock.json
+yarn.lock
+bun.lockb
 
 # OS files
 Thumbs.db

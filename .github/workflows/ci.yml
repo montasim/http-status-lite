@@ -11,20 +11,23 @@ permissions:
 
 jobs:
     verify:
-        name: Source and package verification
+        name: Workspace and package verification
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: 11.7.0
             - uses: actions/setup-node@v7
               with:
-                  node-version: 24.x
-                  cache: npm
-            - run: npm ci
-            - run: npm run check
+                  node-version-file: .nvmrc
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm check
             - name: Build release tarball
               run: |
                   mkdir artifact
-                  npm pack --ignore-scripts --pack-destination artifact
+                  pnpm --dir packages/http-status-lite pack --ignore-scripts --pack-destination ../../artifact
             - uses: actions/upload-artifact@v7
               with:
                   name: npm-package
@@ -52,7 +55,7 @@ jobs:
                   mkdir consumer
                   cd consumer
                   npm init --yes
-                  npm install --ignore-scripts --no-audit --no-fund ../artifact/http-status-lite-2.3.0.tgz
+                  npm install --ignore-scripts --no-audit --no-fund ../artifact/http-status-lite-*.tgz
             - name: Test ESM
               working-directory: consumer
               run: node --input-type=module --eval "import { Status, getStatus } from 'http-status-lite'; if (Status.OK !== 200 || getStatus(404).name !== 'NOT_FOUND') process.exit(1)"

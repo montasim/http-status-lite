@@ -1,14 +1,14 @@
 # Contributing to http-status-lite
 
-Contributions are welcome when they preserve the package's focus: a small, accurate, framework-independent HTTP status utility.
+Contributions are welcome across the package and reference site. Package changes should preserve its focus: a small, accurate, framework-independent HTTP status utility.
 
 ## Setup
 
 ```sh
 git clone https://github.com/montasim/http-status-lite.git
 cd http-status-lite
-npm ci
-npm run check
+pnpm install
+pnpm check
 ```
 
 Use a focused branch and conventional commit messages such as `feat: add status parser` or `fix: preserve literal lookup type`.
@@ -19,18 +19,18 @@ Use a focused branch and conventional commit messages such as `feat: add status 
 - Add runtime tests for behavior changes.
 - Add compile-time assertions for type changes.
 - Update documentation for public API changes.
-- Run `npm run check` against the packed package.
+- Run `pnpm check:package` against the packed package.
 - Keep runtime dependencies at zero unless there is an exceptional, measured reason.
 
 ## Registry changes
 
-The reviewable source of truth is [`registry/statuses.json`](registry/statuses.json). Do not edit `src/generated/` or `src/codes.ts` directly.
+The reviewable source of truth is [`packages/http-status-lite/registry/statuses.json`](packages/http-status-lite/registry/statuses.json). Do not edit `packages/http-status-lite/src/generated/` or `packages/http-status-lite/src/codes.ts` directly.
 
 To synchronize with IANA:
 
 ```sh
-npm run registry:update
-npm run generate:check
+pnpm registry:update
+pnpm generate:check
 ```
 
 Review lifecycle changes carefully. IANA can include temporary, obsolete, and unused values that should not be described as permanent standards.
@@ -38,17 +38,15 @@ Review lifecycle changes carefully. IANA can include temporary, obsolete, and un
 ## Project structure
 
 ```text
-registry/                 Reviewable IANA-derived source data
-scripts/                  Generation and release verification
-src/generated/            Generated core and metadata tables
-src/codes.ts              Generated constants and Status object
-src/lookup.ts             Typed forward and reverse lookups
-src/parsing.ts            Runtime parsing and assertion
-src/predicates.ts         Numeric range classification
-src/metadata.ts           Optional metadata entry point
-src/legacy.ts             Backward-compatible namespace
-test/                     Runtime and compile-time tests
+apps/web/                              Interactive reference and documentation site
+packages/http-status-lite/registry/    Reviewable IANA-derived source data
+packages/http-status-lite/scripts/     Generation and package verification
+packages/http-status-lite/src/         Package implementation and generated tables
+packages/http-status-lite/test/        Runtime and compile-time tests
+prototypes/                            Archived interface prototype
 ```
+
+The web app consumes the package with `workspace:*`. Build the package before running workspace-specific web commands, or use `pnpm dev`, `pnpm build:web`, and `pnpm check:web` from the root, which handle that ordering.
 
 ## Design guidelines
 

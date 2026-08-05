@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Documentation prototype for http-status-lite — typed constants, lookups, validation, predicates, and registry metadata."
+        />
+        <title>Documentation — http-status-lite</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <div class="site-shell docs-shell">
+            <header class="site-header">
+                <a
+                    class="brand"
+                    href="index.html"
+                    aria-label="http-status-lite home"
+                >
+                    <span class="brand-mark" aria-hidden="true"
+                        ><i></i><i></i><i></i
+                    ></span>
+                    <span>http-status-lite</span>
+                </a>
+
+                <nav class="primary-nav" aria-label="Primary navigation">
+                    <a href="index.html#reference">Reference</a>
+                    <a class="is-active" href="docs.html">Docs</a>
+                    <a href="#migration">Migration</a>
+                </nav>
+
+                <div class="header-actions">
+                    <a class="mobile-context-link" href="index.html#reference"
+                        >Reference</a
+                    >
+                    <a
+                        class="text-link"
+                        href="https://www.npmjs.com/package/http-status-lite"
+                        >npm</a
+                    >
+                    <a
+                        class="text-link"
+                        href="https://github.com/montasim/http-status-lite"
+                        >GitHub</a
+                    >
+                    <a class="header-cta" href="index.html#install"
+                        >Install <span aria-hidden="true">&#8599;</span></a
+                    >
+                </div>
+            </header>
+
+            <main id="main">
+                <section class="docs-hero" aria-labelledby="docs-title">
+                    <div class="docs-hero-inner">
+                        <div>
+                            <span class="docs-version"
+                                >Documentation &middot; v2.3.0</span
+                            >
+                            <h1 id="docs-title">
+                                From status<br />to certainty.
+                            </h1>
+                            <p>
+                                Install the package, choose the smallest entry
+                                point, and keep exact HTTP status types from
+                                input to response.
+                            </p>
+                        </div>
+
+                        <div
+                            class="response-card"
+                            aria-label="Documentation response metadata"
+                        >
+                            <div class="response-card-head">
+                                <span>GET /docs</span><strong>200 OK</strong>
+                            </div>
+                            <dl>
+                                <dt>content-type</dt>
+                                <dd>application/typescript</dd>
+                                <dt>dependencies</dt>
+                                <dd>0</dd>
+                                <dt>module</dt>
+                                <dd>ESM + CommonJS</dd>
+                                <dt>runtime</dt>
+                                <dd>Node.js + browser</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="docs-layout">
+                    <aside class="docs-rail">
+                        <div class="docs-rail-sticky">
+                            <p>Response trace</p>
+                            <nav aria-label="Documentation contents">
+                                <a href="#start"><span>01</span>Start</a>
+                                <a href="#constants"
+                                    ><span>02</span>Constants</a
+                                >
+                                <a href="#lookups"><span>03</span>Lookups</a>
+                                <a href="#validation"
+                                    ><span>04</span>Validation</a
+                                >
+                                <a href="#predicates"
+                                    ><span>05</span>Predicates</a
+                                >
+                                <a href="#metadata"><span>06</span>Metadata</a>
+                                <a href="#types"><span>07</span>Types</a>
+                                <a href="#migration"
+                                    ><span>08</span>Migration</a
+                                >
+                            </nav>
+                            <div class="rail-reference">
+                                <span>Looking for a specific code?</span>
+                                <a href="index.html#reference"
+                                    >Open the reference &#8594;</a
+                                >
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div class="docs-content">
+                        <section class="docs-section" id="start">
+                            <header class="docs-heading">
+                                <p>01 / Start</p>
+                                <h2>Two commands to typed statuses.</h2>
+                                <div>
+                                    Install the package, then import from the
+                                    main entry point. There are no runtime
+                                    dependencies or setup steps.
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>Shell</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code>npm install http-status-lite</code></pre>
+                            </div>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> { Status, getStatus, isSuccess } <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite'</span>;
+
+Status.OK; <span class="comment">// 200</span>
+
+<span class="syntax-purple">const</span> status = getStatus(<span class="syntax-orange">404</span>);
+status.name;    <span class="comment">// 'NOT_FOUND'</span>
+status.message; <span class="comment">// 'Not Found'</span>
+
+isSuccess(Status.NO_CONTENT); <span class="comment">// true</span></code></pre>
+                            </div>
+                            <div class="docs-callout">
+                                <strong>Literal in, literal out.</strong>
+                                Calling <code>getStatus(404)</code> preserves
+                                <code>'NOT_FOUND'</code> and
+                                <code>'Not Found'</code> in the returned
+                                type—not merely <code>string</code>.
+                            </div>
+                        </section>
+
+                        <section class="docs-section" id="constants">
+                            <header class="docs-heading">
+                                <p>02 / API</p>
+                                <h2>Use constants without magic numbers.</h2>
+                                <div>
+                                    Import individual constants or use the
+                                    complete
+                                    <code>Status</code> object. Choose
+                                    <code>/codes</code> when constants are all
+                                    you need.
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> { NOT_FOUND, OK, Status } <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite'</span>;
+
+OK;               <span class="comment">// 200</span>
+NOT_FOUND;        <span class="comment">// 404</span>
+Status.CREATED;   <span class="comment">// 201</span>
+
+<span class="comment">// Constants-only entry point</span>
+<span class="syntax-purple">import</span> { BAD_REQUEST } <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite/codes'</span>;</code></pre>
+                            </div>
+                        </section>
+
+                        <section class="docs-section" id="lookups">
+                            <header class="docs-heading">
+                                <p>03 / API</p>
+                                <h2>Translate codes, names, and phrases.</h2>
+                                <div>
+                                    Lookup helpers return exact types for known
+                                    literal inputs and
+                                    <code>null</code> when a registry entry is
+                                    unknown.
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> {
+  getReasonPhrase,
+  getStatus,
+  getStatusCode,
+  getStatusName,
+} <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite'</span>;
+
+getStatus(<span class="syntax-orange">404</span>);              <span class="comment">// complete entry</span>
+getStatusCode(<span class="syntax-green">'NOT_FOUND'</span>);  <span class="comment">// 404</span>
+getStatusName(<span class="syntax-orange">404</span>);          <span class="comment">// 'NOT_FOUND'</span>
+getReasonPhrase(<span class="syntax-orange">404</span>);        <span class="comment">// 'Not Found'</span>
+getStatus(<span class="syntax-orange">499</span>);              <span class="comment">// null</span></code></pre>
+                            </div>
+                        </section>
+
+                        <section class="docs-section" id="validation">
+                            <header class="docs-heading">
+                                <p>04 / Boundaries</p>
+                                <h2>Narrow values you do not control.</h2>
+                                <div>
+                                    Parse environment variables, route
+                                    parameters, and other external input before
+                                    using them as known status codes.
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> {
+  assertStatusCode,
+  isStatusCode,
+  isStatusName,
+  parseStatusCode,
+} <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite'</span>;
+
+parseStatusCode(<span class="syntax-green">'404'</span>);        <span class="comment">// 404</span>
+parseStatusCode(<span class="syntax-green">'499'</span>);        <span class="comment">// null</span>
+isStatusCode(<span class="syntax-orange">404</span>);             <span class="comment">// true; narrows</span>
+isStatusName(<span class="syntax-green">'NOT_FOUND'</span>);     <span class="comment">// true; narrows</span>
+assertStatusCode(value);       <span class="comment">// narrows or throws</span></code></pre>
+                            </div>
+                        </section>
+
+                        <section class="docs-section" id="predicates">
+                            <header class="docs-heading">
+                                <p>05 / Classification</p>
+                                <h2>
+                                    Ranges and registry entries stay separate.
+                                </h2>
+                                <div>
+                                    Predicates classify any integer in the HTTP
+                                    range. Registry guards answer the stricter
+                                    question: does this package know the code?
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> {
+  getCategory,
+  isClientError,
+  isError,
+  isRedirect,
+  isServerError,
+  isSuccess,
+} <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite/predicates'</span>;
+
+isClientError(<span class="syntax-orange">499</span>);  <span class="comment">// true: in the 4xx range</span>
+isStatusCode(<span class="syntax-orange">499</span>);   <span class="comment">// false: not a known entry</span>
+getCategory(<span class="syntax-orange">499</span>);    <span class="comment">// '4xx'</span></code></pre>
+                            </div>
+                        </section>
+
+                        <section class="docs-section" id="metadata">
+                            <header class="docs-heading">
+                                <p>06 / Standards</p>
+                                <h2>Load standards data only when needed.</h2>
+                                <div>
+                                    References, categories, and IANA lifecycle
+                                    states live in the optional metadata entry
+                                    point, keeping them out of the core bundle.
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> { getStatusMetadata } <span class="syntax-purple">from</span>
+  <span class="syntax-green">'http-status-lite/metadata'</span>;
+
+getStatusMetadata(<span class="syntax-orange">104</span>);
+<span class="comment">// {
+//   code: 104,
+//   name: 'UPLOAD_RESUMPTION_SUPPORTED',
+//   registryStatus: 'temporary',
+//   category: '1xx'
+// }</span></code></pre>
+                            </div>
+                            <p class="docs-afterword">
+                                Lifecycle values are <code>permanent</code>,
+                                <code>temporary</code>, <code>unused</code>, or
+                                <code>obsolete</code>.
+                            </p>
+                        </section>
+
+                        <section class="docs-section" id="types">
+                            <header class="docs-heading">
+                                <p>07 / TypeScript</p>
+                                <h2>
+                                    Bring the registry into your type system.
+                                </h2>
+                                <div>
+                                    Use generated unions when an API accepts
+                                    only represented codes, names, categories,
+                                    or complete entries.
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import type</span> {
+  HttpStatusCategory,
+  HttpStatusCode,
+  HttpStatusEntry,
+  HttpStatusName,
+} <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite'</span>;
+
+<span class="syntax-purple">const</span> code: HttpStatusCode = <span class="syntax-orange">404</span>;
+<span class="syntax-purple">const</span> name: HttpStatusName = <span class="syntax-green">'NOT_FOUND'</span>;
+
+<span class="syntax-purple">const</span> invalid: HttpStatusCode = <span class="syntax-orange">499</span>; <span class="comment">// TypeScript error</span></code></pre>
+                            </div>
+                        </section>
+
+                        <section class="docs-section" id="migration">
+                            <header class="docs-heading">
+                                <p>08 / Compatibility</p>
+                                <h2>Migrate when you are ready.</h2>
+                                <div>
+                                    The original namespace and legacy RFC names
+                                    remain supported. New code should prefer
+                                    current names on <code>Status</code>.
+                                </div>
+                            </header>
+                            <div class="docs-code">
+                                <div>
+                                    <span>TypeScript</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> { httpStatusLite } <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite'</span>;
+
+httpStatusLite.OK;                    <span class="comment">// 200</span>
+httpStatusLite.NOT_FOUND_MESSAGE;     <span class="comment">// 'Not Found'</span>
+httpStatusLite[<span class="syntax-orange">404</span>];                  <span class="comment">// 'NOT_FOUND'</span>
+httpStatusLite.PAYLOAD_TOO_LARGE;     <span class="comment">// legacy alias</span>
+
+<span class="comment">// Prefer the current RFC 9110 name:</span>
+Status.CONTENT_TOO_LARGE;             <span class="comment">// 413</span></code></pre>
+                            </div>
+                            <div class="docs-actions">
+                                <a
+                                    class="docs-primary-action"
+                                    href="index.html#reference"
+                                    >Explore all status codes &#8594;</a
+                                >
+                                <a
+                                    class="docs-secondary-action"
+                                    href="https://github.com/montasim/http-status-lite"
+                                    >View source &#8599;</a
+                                >
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="site-footer">
+                <div>
+                    <a class="brand footer-brand" href="index.html"
+                        ><span class="brand-mark"><i></i><i></i><i></i></span
+                        ><span>http-status-lite</span></a
+                    >
+                    <p>
+                        Standards-backed status codes for Node.js and browsers.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <a href="docs.html">Docs</a>
+                    <a href="https://www.npmjs.com/package/http-status-lite"
+                        >npm</a
+                    >
+                    <a href="https://github.com/montasim/http-status-lite"
+                        >GitHub</a
+                    >
+                    <a
+                        href="https://github.com/montasim/http-status-lite/blob/main/LICENSE"
+                        >License</a
+                    >
+                    <a
+                        href="https://github.com/montasim/http-status-lite/blob/main/packages/http-status-lite/SECURITY.md"
+                        >Security</a
+                    >
+                </div>
+                <p class="footer-meta">
+                    MIT License &middot; Built by Montasim
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>
