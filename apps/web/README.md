@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://http-status-lite-demo.netlify.app/"><strong>Live reference</strong></a>
+  <a href="https://http-status-lite.netlify.app/"><strong>Live reference</strong></a>
   ·
-  <a href="https://http-status-lite-demo.netlify.app/docs"><strong>Documentation</strong></a>
+  <a href="https://http-status-lite.netlify.app/docs"><strong>Documentation</strong></a>
   ·
   <a href="https://www.npmjs.com/package/http-status-lite"><strong>npm package</strong></a>
 </p>
@@ -109,7 +109,7 @@ The repository includes the official Netlify adapter for TanStack Start and a pr
 - Build command: `pnpm build:web`
 - Publish directory: `apps/web/dist/client`
 - Node.js: 24
-- Canonical production URL: `https://http-status-lite-demo.netlify.app`
+- Canonical production URL: `https://http-status-lite.netlify.app`
 
 TanStack Start owns application routing and server rendering, so an SPA fallback redirect is neither needed nor recommended. Netlify Deploy Previews can remain enabled for pull requests.
 

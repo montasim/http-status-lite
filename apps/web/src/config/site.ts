@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
     title: 'HTTP Status Codes for TypeScript | http-status-lite',
     description:
         'Browse all 64 IANA HTTP status codes with exact TypeScript types, safe parsing, RFC references, and lifecycle metadata. Zero runtime dependencies.',
-    url: 'https://http-status-lite-demo.netlify.app',
+    url: 'https://http-status-lite.netlify.app',
     locale: 'en_US',
     author: 'Montasim',
     version: '2.3.0',

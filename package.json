@@ -4,7 +4,7 @@
     "private": true,
     "description": "http-status-lite library and interactive documentation workspace.",
     "license": "MIT",
-    "homepage": "https://http-status-lite-demo.netlify.app/",
+    "homepage": "https://http-status-lite.netlify.app/",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/montasim/http-status-lite.git"

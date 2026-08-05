@@ -7,7 +7,7 @@
 
 A pnpm monorepo for the zero-dependency `http-status-lite` TypeScript library and its interactive TanStack Start status-code reference. Keeping both projects together means the web app exercises the local package on every build, so registry, API, and documentation changes can be verified and shipped from one repository.
 
-**[Explore HTTP status codes](https://http-status-lite-demo.netlify.app/) · [Read the interactive docs](https://http-status-lite-demo.netlify.app/docs) · [Install from npm](https://www.npmjs.com/package/http-status-lite)**
+**[Explore HTTP status codes](https://http-status-lite.netlify.app/) · [Read the interactive docs](https://http-status-lite.netlify.app/docs) · [Install from npm](https://www.npmjs.com/package/http-status-lite)**
 
 ## What is included
 
