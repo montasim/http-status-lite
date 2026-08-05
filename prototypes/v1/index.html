@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Prototype for http-status-lite — a tiny, standards-backed, type-safe HTTP status code library."
+        />
+        <title>http-status-lite — typed HTTP status codes</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <div class="site-shell">
+            <header class="site-header">
+                <a class="brand" href="#" aria-label="http-status-lite home">
+                    <span class="brand-mark" aria-hidden="true"
+                        ><i></i><i></i><i></i
+                    ></span>
+                    <span>http-status-lite</span>
+                </a>
+
+                <nav class="primary-nav" aria-label="Primary navigation">
+                    <a class="is-active" href="#reference">Reference</a>
+                    <a href="docs.html">Docs</a>
+                    <a href="#migration">Migration</a>
+                </nav>
+
+                <div class="header-actions">
+                    <a class="mobile-context-link" href="docs.html">Docs</a>
+                    <a
+                        class="text-link"
+                        href="https://www.npmjs.com/package/http-status-lite"
+                        >npm</a
+                    >
+                    <a
+                        class="text-link"
+                        href="https://github.com/montasim/http-status-lite"
+                        >GitHub</a
+                    >
+                    <a class="header-cta" href="#install"
+                        >Install <span aria-hidden="true">&#8599;</span></a
+                    >
+                </div>
+            </header>
+
+            <main id="main">
+                <section class="hero" aria-labelledby="hero-title">
+                    <div class="hero-kicker">
+                        <span class="release-dot"></span>
+                        <strong>v2.3.0</strong>
+                        <span>Registry updated August 2026</span>
+                    </div>
+
+                    <div class="protocol-line" aria-hidden="true">
+                        <span class="protocol">HTTP/1.1</span>
+                        <span class="protocol-code">200</span>
+                        <span class="protocol-message">OK</span>
+                    </div>
+
+                    <div class="hero-bottom">
+                        <div class="hero-copy">
+                            <h1 id="hero-title">
+                                Status codes that<br />TypeScript understands.
+                            </h1>
+                            <p>
+                                Tiny, standards-backed HTTP status codes with
+                                exact types, safe parsing, and
+                                literal-preserving lookups. Zero runtime
+                                dependencies.
+                            </p>
+                        </div>
+
+                        <div class="install-panel" id="install">
+                            <input
+                                class="pm-choice sr-only"
+                                type="radio"
+                                name="package-manager"
+                                id="pm-npm"
+                                checked
+                            />
+                            <input
+                                class="pm-choice sr-only"
+                                type="radio"
+                                name="package-manager"
+                                id="pm-pnpm"
+                            />
+                            <input
+                                class="pm-choice sr-only"
+                                type="radio"
+                                name="package-manager"
+                                id="pm-yarn"
+                            />
+                            <input
+                                class="pm-choice sr-only"
+                                type="radio"
+                                name="package-manager"
+                                id="pm-bun"
+                            />
+
+                            <div class="install-head">
+                                <span class="install-label"
+                                    >Install package</span
+                                >
+                                <div
+                                    class="install-tabs"
+                                    aria-label="Choose a package manager"
+                                >
+                                    <label for="pm-npm">npm</label>
+                                    <label for="pm-pnpm">pnpm</label>
+                                    <label for="pm-yarn">Yarn</label>
+                                    <label for="pm-bun">Bun</label>
+                                </div>
+                            </div>
+
+                            <div class="install-commands">
+                                <code class="npm-command"
+                                    ><span>$</span> npm install
+                                    http-status-lite</code
+                                >
+                                <code class="pnpm-command"
+                                    ><span>$</span> pnpm add
+                                    http-status-lite</code
+                                >
+                                <code class="yarn-command"
+                                    ><span>$</span> yarn add
+                                    http-status-lite</code
+                                >
+                                <code class="bun-command"
+                                    ><span>$</span> bun add
+                                    http-status-lite</code
+                                >
+                                <button
+                                    class="copy-button"
+                                    type="button"
+                                    aria-label="Copy install command"
+                                >
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <rect
+                                            x="8"
+                                            y="8"
+                                            width="11"
+                                            height="11"
+                                            rx="2"
+                                        ></rect>
+                                        <path
+                                            d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"
+                                        ></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="package-facts">
+                                <span><b>64</b> known codes</span>
+                                <span><b>0</b> dependencies</span>
+                                <span><b>MIT</b> licensed</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    class="category-ribbon"
+                    aria-label="HTTP status categories"
+                >
+                    <div class="ribbon-item info">
+                        <span class="range">1xx</span
+                        ><span class="count">05</span><span>Informational</span>
+                    </div>
+                    <div class="ribbon-item success">
+                        <span class="range">2xx</span
+                        ><span class="count">10</span><span>Success</span>
+                    </div>
+                    <div class="ribbon-item redirect">
+                        <span class="range">3xx</span
+                        ><span class="count">09</span><span>Redirection</span>
+                    </div>
+                    <div class="ribbon-item client">
+                        <span class="range">4xx</span
+                        ><span class="count">29</span><span>Client error</span>
+                    </div>
+                    <div class="ribbon-item server">
+                        <span class="range">5xx</span
+                        ><span class="count">11</span><span>Server error</span>
+                    </div>
+                </section>
+
+                <section
+                    class="quick-start"
+                    id="api"
+                    aria-labelledby="quick-start-title"
+                >
+                    <div class="section-heading">
+                        <p class="eyebrow">Typed from end to end</p>
+                        <h2 id="quick-start-title">
+                            One import. Exact answers.
+                        </h2>
+                        <p class="section-summary">
+                            Literal inputs keep literal outputs, so your editor
+                            knows the exact name and message—not just
+                            <code>string</code>.
+                        </p>
+                    </div>
+
+                    <div
+                        class="code-window"
+                        aria-label="TypeScript quick start example"
+                    >
+                        <div class="window-bar">
+                            <div class="window-dots"><i></i><i></i><i></i></div>
+                            <span>response.ts</span>
+                            <span class="language">TypeScript</span>
+                        </div>
+                        <pre><code><span class="syntax-purple">import</span> { Status, getStatus, isSuccess }
+  <span class="syntax-purple">from</span> <span class="syntax-green">'http-status-lite'</span>;
+
+<span class="syntax-purple">const</span> status = getStatus(<span class="syntax-orange">404</span>);
+
+status.name;    <span class="comment">// 'NOT_FOUND'</span>
+status.message; <span class="comment">// 'Not Found'</span>
+isSuccess(Status.NO_CONTENT); <span class="comment">// true</span></code></pre>
+                    </div>
+
+                    <div class="feature-stack">
+                        <article>
+                            <span class="feature-icon">T</span>
+                            <div>
+                                <h3>Exact generated types</h3>
+                                <p>
+                                    Literal-preserving lookups and unions
+                                    generated from one reviewable registry.
+                                </p>
+                            </div>
+                        </article>
+                        <article>
+                            <span class="feature-icon">&#10003;</span>
+                            <div>
+                                <h3>Safe at the boundary</h3>
+                                <p>
+                                    Parse, validate, assert, and narrow unknown
+                                    status values at runtime.
+                                </p>
+                            </div>
+                        </article>
+                        <article>
+                            <span class="feature-icon">&#8644;</span>
+                            <div>
+                                <h3>Small by design</h3>
+                                <p>
+                                    Import only constants, predicates, or
+                                    metadata through tree-shakeable entry
+                                    points.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section
+                    class="reference"
+                    id="reference"
+                    aria-labelledby="reference-title"
+                >
+                    <div class="reference-heading">
+                        <div>
+                            <p class="eyebrow">Standards registry</p>
+                            <h2 id="reference-title">Find a status code</h2>
+                        </div>
+                        <p>
+                            64 represented entries, sourced from the IANA
+                            registry.
+                        </p>
+                    </div>
+
+                    <div class="reference-toolbar">
+                        <label class="search-field">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="11" cy="11" r="7"></circle>
+                                <path d="m20 20-4-4"></path>
+                            </svg>
+                            <span class="sr-only">Search status codes</span>
+                            <input
+                                type="search"
+                                placeholder="Search 404, NOT_FOUND, or message..."
+                            />
+                            <kbd>/</kbd>
+                        </label>
+                        <div
+                            class="filter-pills"
+                            aria-label="Filter status codes"
+                        >
+                            <button class="active" type="button">
+                                All <span>64</span>
+                            </button>
+                            <button type="button">1xx</button>
+                            <button type="button">2xx</button>
+                            <button type="button">3xx</button>
+                            <button type="button">4xx</button>
+                            <button type="button">5xx</button>
+                        </div>
+                        <button class="standards-filter" type="button">
+                            <span class="filter-icon" aria-hidden="true"
+                                >&#8645;</span
+                            >
+                            Lifecycle: all
+                        </button>
+                    </div>
+
+                    <div class="reference-layout">
+                        <div class="status-list" role="list">
+                            <article
+                                class="status-row temporary"
+                                role="listitem"
+                            >
+                                <span class="status-code">104</span>
+                                <div class="status-name">
+                                    <h3>Upload Resumption Supported</h3>
+                                    <code>UPLOAD_RESUMPTION_SUPPORTED</code>
+                                </div>
+                                <span class="lifecycle temporary-badge"
+                                    ><i></i> Temporary</span
+                                >
+                                <span class="reference-id"
+                                    >draft-httpbis-05</span
+                                >
+                                <button
+                                    type="button"
+                                    aria-label="Open status 104"
+                                >
+                                    &#8594;
+                                </button>
+                            </article>
+
+                            <article
+                                class="status-row success-row"
+                                role="listitem"
+                            >
+                                <span class="status-code">200</span>
+                                <div class="status-name">
+                                    <h3>OK</h3>
+                                    <code>OK</code>
+                                </div>
+                                <span class="lifecycle"><i></i> Permanent</span>
+                                <span class="reference-id"
+                                    >RFC 9110 &sect;15.3.1</span
+                                >
+                                <button
+                                    type="button"
+                                    aria-label="Open status 200"
+                                >
+                                    &#8594;
+                                </button>
+                            </article>
+
+                            <article
+                                class="status-row redirect-row"
+                                role="listitem"
+                            >
+                                <span class="status-code">304</span>
+                                <div class="status-name">
+                                    <h3>Not Modified</h3>
+                                    <code>NOT_MODIFIED</code>
+                                </div>
+                                <span class="lifecycle"><i></i> Permanent</span>
+                                <span class="reference-id"
+                                    >RFC 9110 &sect;15.4.5</span
+                                >
+                                <button
+                                    type="button"
+                                    aria-label="Open status 304"
+                                >
+                                    &#8594;
+                                </button>
+                            </article>
+
+                            <article
+                                class="status-row client-row is-selected"
+                                role="listitem"
+                            >
+                                <span class="status-code">404</span>
+                                <div class="status-name">
+                                    <h3>Not Found</h3>
+                                    <code>NOT_FOUND</code>
+                                </div>
+                                <span class="lifecycle"><i></i> Permanent</span>
+                                <span class="reference-id"
+                                    >RFC 9110 &sect;15.5.5</span
+                                >
+                                <button
+                                    type="button"
+                                    aria-label="Open status 404"
+                                >
+                                    &#8594;
+                                </button>
+                            </article>
+
+                            <article
+                                class="status-row client-row"
+                                role="listitem"
+                            >
+                                <span class="status-code">413</span>
+                                <div class="status-name">
+                                    <h3>Content Too Large</h3>
+                                    <code>CONTENT_TOO_LARGE</code>
+                                </div>
+                                <span class="lifecycle"><i></i> Permanent</span>
+                                <span class="reference-id"
+                                    >RFC 9110 &sect;15.5.14</span
+                                >
+                                <button
+                                    type="button"
+                                    aria-label="Open status 413"
+                                >
+                                    &#8594;
+                                </button>
+                            </article>
+
+                            <article
+                                class="status-row client-row"
+                                role="listitem"
+                            >
+                                <span class="status-code">418</span>
+                                <div class="status-name">
+                                    <h3>I'm a teapot</h3>
+                                    <code>IM_A_TEAPOT</code>
+                                </div>
+                                <span class="lifecycle unused-badge"
+                                    ><i></i> Unused</span
+                                >
+                                <span class="reference-id"
+                                    >RFC 9110 &sect;15.5.19</span
+                                >
+                                <button
+                                    type="button"
+                                    aria-label="Open status 418"
+                                >
+                                    &#8594;
+                                </button>
+                            </article>
+
+                            <article
+                                class="status-row server-row"
+                                role="listitem"
+                            >
+                                <span class="status-code">503</span>
+                                <div class="status-name">
+                                    <h3>Service Unavailable</h3>
+                                    <code>SERVICE_UNAVAILABLE</code>
+                                </div>
+                                <span class="lifecycle"><i></i> Permanent</span>
+                                <span class="reference-id"
+                                    >RFC 9110 &sect;15.6.4</span
+                                >
+                                <button
+                                    type="button"
+                                    aria-label="Open status 503"
+                                >
+                                    &#8594;
+                                </button>
+                            </article>
+                        </div>
+
+                        <aside
+                            class="status-inspector"
+                            aria-labelledby="inspector-title"
+                        >
+                            <div class="inspector-topline">
+                                <span>4xx / Client error</span>
+                                <button
+                                    type="button"
+                                    aria-label="Close details"
+                                >
+                                    &#215;
+                                </button>
+                            </div>
+                            <div class="inspector-code">404</div>
+                            <h3 id="inspector-title">Not Found</h3>
+                            <code class="constant-name">NOT_FOUND</code>
+
+                            <dl class="status-meta">
+                                <div>
+                                    <dt>Lifecycle</dt>
+                                    <dd>
+                                        <span class="green-dot"></span>
+                                        Permanent
+                                    </dd>
+                                </div>
+                                <div>
+                                    <dt>Reference</dt>
+                                    <dd>RFC 9110 &sect;15.5.5</dd>
+                                </div>
+                                <div>
+                                    <dt>Category</dt>
+                                    <dd>4xx</dd>
+                                </div>
+                            </dl>
+
+                            <div class="usage-block">
+                                <div>
+                                    <span>Use in code</span
+                                    ><button type="button">Copy</button>
+                                </div>
+                                <pre><code><span class="syntax-purple">import</span> { Status } <span class="syntax-purple">from</span>
+  <span class="syntax-green">'http-status-lite'</span>;
+
+Status.NOT_FOUND; <span class="comment">// 404</span></code></pre>
+                            </div>
+
+                            <div class="inspector-note">
+                                <strong>Typed lookup</strong>
+                                <p>
+                                    <code>getStatus(404)</code> returns a
+                                    literal-typed entry whose name is exactly
+                                    <code>'NOT_FOUND'</code>.
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                </section>
+
+                <section
+                    class="api-map"
+                    id="migration"
+                    aria-labelledby="api-map-title"
+                >
+                    <div class="section-heading compact">
+                        <p class="eyebrow">Pick the smallest entry point</p>
+                        <h2 id="api-map-title">Use only what you need.</h2>
+                    </div>
+                    <div class="entry-grid">
+                        <article>
+                            <code>/codes</code>
+                            <h3>Constants</h3>
+                            <p>
+                                Named values and the complete
+                                <code>Status</code> object.
+                            </p>
+                            <span>OK &middot; NOT_FOUND &middot; Status</span>
+                        </article>
+                        <article>
+                            <code>/predicates</code>
+                            <h3>Classification</h3>
+                            <p>Range helpers for any valid HTTP integer.</p>
+                            <span
+                                >isSuccess &middot; isError &middot;
+                                getCategory</span
+                            >
+                        </article>
+                        <article>
+                            <code>/metadata</code>
+                            <h3>Standards data</h3>
+                            <p>
+                                References, categories, and IANA lifecycle
+                                state.
+                            </p>
+                            <span>getStatusMetadata</span>
+                        </article>
+                    </div>
+                    <div class="migration-note">
+                        <span class="note-label">Migrating?</span>
+                        <p>
+                            The original <code>httpStatusLite</code> namespace
+                            and legacy RFC names remain supported.
+                        </p>
+                        <a href="#"
+                            >Read the migration notes
+                            <span aria-hidden="true">&#8594;</span></a
+                        >
+                    </div>
+                </section>
+            </main>
+
+            <footer class="site-footer">
+                <div>
+                    <a class="brand footer-brand" href="#"
+                        ><span class="brand-mark"><i></i><i></i><i></i></span
+                        ><span>http-status-lite</span></a
+                    >
+                    <p>
+                        Standards-backed status codes for Node.js and browsers.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <a href="docs.html">Docs</a>
+                    <a href="https://www.npmjs.com/package/http-status-lite"
+                        >npm</a
+                    >
+                    <a href="https://github.com/montasim/http-status-lite"
+                        >GitHub</a
+                    >
+                    <a href="#">License</a>
+                    <a href="#">Security</a>
+                </div>
+                <p class="footer-meta">
+                    MIT License &middot; Built by Montasim
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>

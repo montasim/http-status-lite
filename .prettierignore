@@ -19,6 +19,7 @@ bun.lockb
 # Auto-generated
 *.min.css
 *.min.js
+apps/web/src/routeTree.gen.ts
 
 # Logs
 *.log

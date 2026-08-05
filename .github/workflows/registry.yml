@@ -2,7 +2,7 @@ name: IANA registry drift
 
 on:
     schedule:
-        - cron: '17 6 1 * *'
+        - cron: "17 6 1 * *"
     workflow_dispatch:
 
 permissions:
@@ -13,11 +13,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v7
+            - uses: pnpm/action-setup@v4
+              with:
+                  version: 11.7.0
             - uses: actions/setup-node@v7
               with:
-                  node-version: 24.x
-                  cache: npm
-            - run: npm ci
-            - run: npm run registry:update
+                  node-version-file: .nvmrc
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm registry:update
             - name: Fail when generated registry data changed
-              run: git diff --exit-code -- registry src/generated src/codes.ts
+              run: git diff --exit-code -- packages/http-status-lite/registry packages/http-status-lite/src/generated packages/http-status-lite/src/codes.ts

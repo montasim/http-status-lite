@@ -16,7 +16,7 @@ Please include a summary of the changes and the related issue. Fixes #(issue_num
 Please describe the tests that you ran to verify your changes.
 
 - [ ] Added new tests
-- [ ] All checks pass (`npm run check`)
+- [ ] All checks pass (`pnpm check`)
 - [ ] Tested manually
 
 ## Checklist:
@@ -26,7 +26,7 @@ Please describe the tests that you ran to verify your changes.
 - [ ] I have commented my code with JSDoc, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation (README, CHANGELOG)
 - [ ] My changes generate no new warnings
-- [ ] I have tested my changes locally (`npm test` and `npm run lint`)
+- [ ] I have tested my changes locally (`pnpm test` and `pnpm check`)
 - [ ] I have updated the CHANGELOG.md if applicable
 
 ## Breaking Changes

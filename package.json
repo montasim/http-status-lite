@@ -1,109 +1,10 @@
 {
-    "name": "http-status-lite",
+    "name": "http-status-lite-workspace",
     "version": "2.3.0",
-    "description": "Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers",
-    "type": "module",
-    "main": "./dist/index.cjs",
-    "module": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "import": {
-                "types": "./dist/index.d.ts",
-                "default": "./dist/index.js"
-            },
-            "require": {
-                "types": "./dist/index.d.cts",
-                "default": "./dist/index.cjs"
-            }
-        },
-        "./codes": {
-            "import": {
-                "types": "./dist/codes.d.ts",
-                "default": "./dist/codes.js"
-            },
-            "require": {
-                "types": "./dist/codes.d.cts",
-                "default": "./dist/codes.cjs"
-            }
-        },
-        "./predicates": {
-            "import": {
-                "types": "./dist/predicates.d.ts",
-                "default": "./dist/predicates.js"
-            },
-            "require": {
-                "types": "./dist/predicates.d.cts",
-                "default": "./dist/predicates.cjs"
-            }
-        },
-        "./metadata": {
-            "import": {
-                "types": "./dist/metadata.d.ts",
-                "default": "./dist/metadata.js"
-            },
-            "require": {
-                "types": "./dist/metadata.d.cts",
-                "default": "./dist/metadata.cjs"
-            }
-        },
-        "./package.json": "./package.json"
-    },
-    "files": [
-        "dist",
-        "README.md",
-        "LICENSE",
-        "SECURITY.md"
-    ],
-    "sideEffects": false,
-    "engines": {
-        "node": ">=18"
-    },
-    "scripts": {
-        "build": "tsup",
-        "dev": "tsup --watch",
-        "generate": "node scripts/generate-registry.mjs",
-        "generate:check": "node scripts/generate-registry.mjs --check",
-        "registry:update": "node scripts/update-registry.mjs && npm run generate",
-        "typecheck": "tsc --noEmit",
-        "test:runtime": "node --test test/*.test.js",
-        "test:size": "node scripts/check-size.mjs",
-        "test:package": "node scripts/test-package.mjs",
-        "test": "npm run generate:check && npm run typecheck && npm run build && npm run test:runtime && npm run test:size",
-        "test:all": "npm test && npm run test:package",
-        "prepack": "npm run test",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix",
-        "format": "prettier --check .",
-        "format:fix": "prettier --write .",
-        "check": "npm run lint && npm run format && npm run test:all",
-        "prepare": "husky"
-    },
-    "keywords": [
-        "http",
-        "http-status",
-        "http-status-code",
-        "http-status-codes",
-        "status-code",
-        "status-codes",
-        "reason-phrase",
-        "iana",
-        "rfc-9110",
-        "typescript",
-        "type-safe",
-        "fetch",
-        "nodejs",
-        "browser",
-        "esm",
-        "commonjs",
-        "zero-dependency",
-        "lightweight"
-    ],
-    "author": "Montasim",
+    "private": true,
+    "description": "http-status-lite library and interactive documentation workspace.",
     "license": "MIT",
-    "publishConfig": {
-        "access": "public"
-    },
+    "homepage": "https://http-status-lite-demo.netlify.app/",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/montasim/http-status-lite.git"
@@ -111,20 +12,34 @@
     "bugs": {
         "url": "https://github.com/montasim/http-status-lite/issues"
     },
-    "homepage": "https://http-status-lite-demo.netlify.app/",
+    "packageManager": "pnpm@11.7.0",
+    "engines": {
+        "node": ">=20.19.0"
+    },
+    "scripts": {
+        "dev": "pnpm dev:web",
+        "dev:web": "pnpm --filter http-status-lite build && pnpm --filter @http-status-lite/web dev",
+        "build": "pnpm --filter @http-status-lite/web... build",
+        "build:package": "pnpm --filter http-status-lite build",
+        "build:web": "pnpm --filter @http-status-lite/web... build",
+        "check": "pnpm check:package && pnpm --filter @http-status-lite/web check",
+        "check:package": "pnpm --filter http-status-lite check",
+        "check:web": "pnpm --filter http-status-lite build && pnpm --filter @http-status-lite/web check",
+        "test": "pnpm --filter http-status-lite test",
+        "test:all": "pnpm --filter http-status-lite test:all",
+        "registry:update": "pnpm --filter http-status-lite registry:update",
+        "generate": "pnpm --filter http-status-lite generate",
+        "generate:check": "pnpm --filter http-status-lite generate:check",
+        "format": "pnpm --recursive --if-present format",
+        "format:check": "pnpm --recursive --if-present format:check",
+        "prepare": "husky"
+    },
     "devDependencies": {
         "@commitlint/cli": "20.5.0",
         "@commitlint/config-conventional": "20.5.0",
-        "eslint": "9.39.2",
-        "eslint-config-prettier": "10.1.8",
         "husky": "9.1.7",
         "lint-staged": "16.4.0",
         "prettier": "3.8.1",
-        "tsup": "8.5.1",
-        "typescript": "5.9.3",
-        "typescript-eslint": "8.57.2"
-    },
-    "overrides": {
-        "esbuild": "0.28.1"
+        "typescript": "5.9.3"
     }
 }

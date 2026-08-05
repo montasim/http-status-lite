@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://http-status-lite-demo.netlify.app/sitemap.xml

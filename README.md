@@ -1,282 +1,121 @@
 # http-status-lite
 
-Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
-
-[![npm version](https://img.shields.io/npm/v/http-status-lite)](https://www.npmjs.com/package/http-status-lite)
+[![npm version](https://img.shields.io/npm/v/http-status-lite.svg)](https://www.npmjs.com/package/http-status-lite)
 [![CI](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/montasim/http-status-lite/actions/workflows/ci.yml)
-[![license](https://img.shields.io/npm/l/http-status-lite)](LICENSE)
-[![Node.js](https://img.shields.io/node/v/http-status-lite)](package.json)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Support on SupportKori](https://img.shields.io/badge/Support-SupportKori-FFDD00)](https://www.supportkori.com/montasim)
 
-Explore all represented codes and runnable examples in the **[interactive reference](https://http-status-lite-demo.netlify.app/)**.
+A pnpm monorepo for the zero-dependency `http-status-lite` TypeScript library and its interactive TanStack Start status-code reference. Keeping both projects together means the web app exercises the local package on every build, so registry, API, and documentation changes can be verified and shipped from one repository.
 
-**[Install from npm](https://www.npmjs.com/package/http-status-lite) · [Browse the live docs](https://http-status-lite-demo.netlify.app/docs) · [Report an issue](https://github.com/montasim/http-status-lite/issues)**
+**[Explore HTTP status codes](https://http-status-lite-demo.netlify.app/) · [Read the interactive docs](https://http-status-lite-demo.netlify.app/docs) · [Install from npm](https://www.npmjs.com/package/http-status-lite)**
 
-## Why use it?
+## What is included
 
-- Exact `HttpStatusCode` and `HttpStatusName` unions generated from one registry snapshot
-- Literal-preserving lookups: `getStatus(404).name` is typed as `'NOT_FOUND'`
-- Named constants and small subpath exports for effective tree-shaking
-- Runtime parsing, validation, and type guards for untrusted values
-- Explicit IANA lifecycle metadata in an optional entry point
-- ESM, CommonJS, Node.js, and browser support with no runtime dependencies
-- Compatibility with the original `httpStatusLite` namespace
+| Workspace                   | Purpose                                                                                          | Documentation                                         |
+| --------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| `packages/http-status-lite` | Published ESM/CommonJS package with typed codes, lookups, predicates, parsing, and IANA metadata | [Package README](packages/http-status-lite/README.md) |
+| `apps/web`                  | React 19 and TanStack Start reference and documentation site                                     | [Web README](apps/web/README.md)                      |
 
-## Install
-
-```sh
-npm install http-status-lite
-```
-
-No environment variables, service accounts, runtime initialization, or peer dependencies are required.
+The web workspace depends on `http-status-lite` through pnpm's `workspace:*` protocol. Local builds therefore use the package in this repository rather than a separately installed npm release.
 
 ## Quick start
 
-```ts
-import { Status, getReasonPhrase, getStatus, isStatusCode, isSuccess } from 'http-status-lite';
+Prerequisites:
 
-Status.OK; // 200
-Status.NOT_FOUND; // 404
-getReasonPhrase(404); // 'Not Found'
-getStatus(404); // { code: 404, name: 'NOT_FOUND', message: 'Not Found' }
-isSuccess(204); // true
-isStatusCode(404); // true
-```
-
-Literal inputs keep literal outputs:
-
-```ts
-const status = getStatus(404);
-// typeof status.name is 'NOT_FOUND', not string
-// typeof status.message is 'Not Found', not string
-```
-
-## API
-
-### Constants
-
-```ts
-import { NOT_FOUND, OK, Status } from 'http-status-lite';
-
-OK; // 200
-NOT_FOUND; // 404
-Status.CREATED; // 201
-```
-
-For a constants-only bundle:
-
-```ts
-import { NOT_FOUND } from 'http-status-lite/codes';
-```
-
-### Lookups
-
-```ts
-import { getReasonPhrase, getStatus, getStatusCode, getStatusName } from 'http-status-lite';
-
-getStatus(404); // complete entry
-getStatusCode('NOT_FOUND'); // 404
-getStatusName(404); // 'NOT_FOUND'
-getReasonPhrase(404); // 'Not Found'
-getStatus(499); // null
-```
-
-### Parsing and validation
-
-```ts
-import { assertStatusCode, isStatusCode, isStatusName, parseStatusCode } from 'http-status-lite';
-
-parseStatusCode('404'); // 404
-parseStatusCode('499'); // null: not a known entry
-isStatusCode(404); // true, and narrows the value
-isStatusName('NOT_FOUND'); // true, and narrows the value
-assertStatusCode(value); // narrows or throws TypeError
-```
-
-### Range predicates
-
-```ts
-import {
-    getCategory,
-    isClientError,
-    isError,
-    isInformational,
-    isRedirect,
-    isServerError,
-    isSuccess,
-} from 'http-status-lite/predicates';
-```
-
-Range predicates classify any integer in the HTTP range. Registry validation is intentionally separate:
-
-```ts
-isClientError(499); // true: it is in the 4xx range
-isStatusCode(499); // false: it is not a represented registry entry
-getCategory(499); // '4xx'
-```
-
-### Registry metadata
-
-Metadata has its own entry point so references and lifecycle data do not increase the core bundle:
-
-```ts
-import { getStatusMetadata } from 'http-status-lite/metadata';
-
-getStatusMetadata(104);
-// {
-//   code: 104,
-//   name: 'UPLOAD_RESUMPTION_SUPPORTED',
-//   message: 'Upload Resumption Supported',
-//   reference: 'draft-ietf-httpbis-resumable-upload-05',
-//   registryStatus: 'temporary',
-//   category: '1xx'
-// }
-```
-
-Lifecycle values are `permanent`, `temporary`, `unused`, or `obsolete`. Code `418` remains available as `IM_A_TEAPOT` for developer compatibility while metadata correctly identifies its current IANA state as `unused`.
-
-## Types
-
-```ts
-import type {
-    HttpStatusCategory,
-    HttpStatusCode,
-    HttpStatusEntry,
-    HttpStatusName,
-} from 'http-status-lite';
-
-const code: HttpStatusCode = 404;
-const name: HttpStatusName = 'NOT_FOUND';
-```
-
-Invalid known-code assignments fail during compilation:
-
-```ts
-const code: HttpStatusCode = 499; // TypeScript error
-```
-
-## Common recipes
-
-### Fetch
-
-```ts
-import { isClientError, isServerError } from 'http-status-lite';
-
-const response = await fetch(url);
-if (isClientError(response.status)) throw new Error('The request was rejected');
-if (isServerError(response.status)) throw new Error('The service failed');
-```
-
-### Express, Fastify, Hono, or Next.js
-
-The constants are framework-independent:
-
-```ts
-import { Status } from 'http-status-lite';
-
-return new Response(JSON.stringify(data), { status: Status.CREATED });
-// Express: res.status(Status.CREATED).json(data)
-// Fastify: reply.code(Status.CREATED).send(data)
-// Hono: return c.json(data, Status.CREATED)
-```
-
-### Validate an external value
-
-```ts
-import { parseStatusCode } from 'http-status-lite';
-
-const status = parseStatusCode(process.env.EXPECTED_STATUS);
-if (status === null) throw new Error('EXPECTED_STATUS must be a known HTTP status code');
-```
-
-## Compatibility and migration
-
-`http-status-lite` supports Node.js 18 and newer, modern browsers, ESM, and CommonJS. The package publishes declarations and separate `codes`, `predicates`, and `metadata` entry points. It has no runtime dependencies; compatibility is verified against the packed npm artifact on Node.js 18, 20, 22, and 24 in CI.
-
-The original namespace remains supported:
-
-```ts
-import { httpStatusLite } from 'http-status-lite';
-
-httpStatusLite.OK; // 200
-httpStatusLite.NOT_FOUND_MESSAGE; // 'Not Found'
-httpStatusLite[404]; // 'NOT_FOUND'
-httpStatusLite.UNPROCESSABLE_ENTITY; // 422, legacy alias
-httpStatusLite.PAYLOAD_TOO_LARGE; // 413, legacy alias
-```
-
-RFC 9110 renamed `Payload Too Large` to `Content Too Large` and `Unprocessable Entity` to `Unprocessable Content`. New code should use `CONTENT_TOO_LARGE` and `UNPROCESSABLE_CONTENT`; the previous names remain on `httpStatusLite`.
-
-## Registry maintenance
-
-[`registry/statuses.json`](registry/statuses.json) is the reviewable source snapshot. Generated TypeScript must not be edited directly:
-
-```sh
-npm run generate
-npm run generate:check
-npm run registry:update # fetch the latest official IANA CSV, then regenerate
-```
-
-The snapshot follows the [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml). Temporary and historical entries are represented explicitly instead of being silently treated as permanent standards.
-
-A scheduled CI job compares the committed snapshot with IANA each month, making registry drift visible without putting a network request in package builds or application startup.
-
-## Development
+- Node.js 24 (selected by `.nvmrc`; Node.js 20.19 or newer can manage the workspace)
+- pnpm 11.7.0
 
 ```sh
 git clone https://github.com/montasim/http-status-lite.git
 cd http-status-lite
-npm ci
-npm run check
+pnpm install
+pnpm dev
 ```
 
-The full check covers linting, formatting, generation drift, compile-time type assertions, runtime behavior, bundle budgets, ESM/CommonJS exports, and the actual `npm pack` artifact.
+The root development command builds the package and starts the web app at [http://localhost:3000](http://localhost:3000). No environment variables or external services are required.
 
-## Release process
+## Use the package
 
-Publishing is performed by the manual [release workflow](.github/workflows/release.yml). It installs the locked dependency tree, runs the complete check, and publishes to npm with provenance. Registry updates are a separate reviewed change: update the IANA snapshot, regenerate source, run `npm run check`, and document any compatibility alias or lifecycle change before publishing.
+Consumers can install the published package independently:
 
-The package follows semantic versioning. Treat removed exports or narrowed accepted values as breaking changes; additive status metadata and standards-snapshot updates still require release-note review because downstream behavior may change.
+```sh
+pnpm add http-status-lite
+```
 
-## Project status and limitations
+```ts
+import { Status, getStatus, isStatusCode, isSuccess } from "http-status-lite";
 
-- The represented registry is a committed snapshot, not a runtime request to IANA; the scheduled drift workflow reports when review is needed.
-- Range predicates classify integers by HTTP class even when the code is not a represented registry entry.
-- `418` remains available for compatibility while its metadata reports the current IANA lifecycle state.
-- The library provides protocol constants and metadata, not application-specific error handling or HTTP semantics enforcement.
-- Temporary registrations can change upstream and should be reviewed before being embedded into long-lived contracts.
+Status.OK; // 200
+getStatus(404); // { code: 404, name: 'NOT_FOUND', message: 'Not Found' }
+isSuccess(Status.NO_CONTENT); // true
+isStatusCode(404); // true
+```
 
-## Documentation
+Literal inputs preserve literal output types, and separate entry points keep constants, predicates, and lifecycle metadata independently importable. See the [package API documentation](packages/http-status-lite/README.md#api) for the complete surface and migration notes.
 
-- [Interactive reference and recipes](https://http-status-lite-demo.netlify.app/docs)
-- [Registry source](registry/statuses.json)
-- [Contribution guide](CONTRIBUTING.md)
-- [Security policy](SECURITY.md)
-- [CI workflow](.github/workflows/ci.yml)
-- [Registry drift workflow](.github/workflows/registry.yml)
+## Workspace commands
 
-## Contributing
+Run these commands from the repository root:
 
-Issues and focused pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before editing registry data or generated exports, and run `npm run check` before submitting. Include an official standards reference for registry corrections.
+| Command                | Purpose                                                                        |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| `pnpm dev`             | Build the package and start the web app on port 3000                           |
+| `pnpm build`           | Build the package followed by the production web app                           |
+| `pnpm build:package`   | Build package ESM, CommonJS, declarations, and source maps                     |
+| `pnpm build:web`       | Build the package and production web app                                       |
+| `pnpm test`            | Run generation, type, runtime, build, and size checks for the package          |
+| `pnpm test:all`        | Also test the actual packed package in ESM, CommonJS, and TypeScript consumers |
+| `pnpm check:package`   | Run the package's complete validation                                          |
+| `pnpm check:web`       | Build the package, then check and build the web app                            |
+| `pnpm check`           | Run complete package and web verification                                      |
+| `pnpm registry:update` | Fetch the current IANA CSV and regenerate package sources                      |
+| `pnpm format`          | Format every workspace that defines a formatter                                |
+| `pnpm format:check`    | Check formatting in every workspace                                            |
 
-The repository does not currently include a separate code of conduct. Keep participation respectful, standards-focused, and scoped to observable package behavior.
+## Repository layout
 
-## Support and security
+```text
+.
+├── apps/
+│   └── web/                     # TanStack Start reference site
+├── packages/
+│   └── http-status-lite/        # Published npm package, registry, tests, and API docs
+├── prototypes/                  # Archived interface prototype
+├── .github/workflows/           # Workspace CI, registry drift, and npm publishing
+├── netlify.toml                 # Monorepo-aware web deployment
+└── pnpm-workspace.yaml          # Workspace package discovery
+```
 
-Use [GitHub Issues](https://github.com/montasim/http-status-lite/issues) for reproducible bugs and standards-registry discrepancies. Report vulnerabilities according to [SECURITY.md](SECURITY.md).
+The dependency direction is one-way: `apps/web` consumes `packages/http-status-lite`; the package does not depend on the application.
 
-## Funding
+## Registry and package behavior
 
-If this project has been useful, you can optionally support its continued maintenance:
+The reviewable registry snapshot lives at [`packages/http-status-lite/registry/statuses.json`](packages/http-status-lite/registry/statuses.json). It follows the [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) and records permanent, temporary, obsolete, and unused entries explicitly. Generated files are committed so package builds and application startup do not require a network request.
 
-[![Support me on SupportKori](https://img.shields.io/badge/Support%20me-SupportKori-FFDD00?style=flat-square)](https://www.supportkori.com/montasim)
+Range predicates classify integers in the HTTP range even when an integer is not a represented registry entry. For example, `isClientError(499)` is `true`, while `isStatusCode(499)` is `false`.
 
-Bug reports, standards references, documentation improvements, and code contributions are equally valuable forms of support.
+## Quality and release workflow
 
-## Author
+CI installs the frozen pnpm lockfile and runs `pnpm check`, covering registry drift, types, linting, formatting, runtime behavior, bundle budgets, packed-package consumers, and the web production build. It also uploads the npm tarball and tests that artifact on Node.js 18, 20, 22, and 24.
 
-Built and maintained by [Montasim](https://github.com/montasim).
+Package releases use tags in the form `http-status-lite-vX.Y.Z`. The publish workflow verifies the tag against `packages/http-status-lite/package.json` before publishing that workspace to npm with provenance. Review the [package changelog](packages/http-status-lite/CHANGELOG.md) before upgrading.
 
-## License
+## Deployment
 
-[MIT](LICENSE)
+The root [Netlify configuration](netlify.toml) runs `pnpm build:web` and publishes `apps/web/dist/client`. TanStack Start SSR and server functions are handled by the official Netlify Vite integration. Local Netlify development runs on port 8888 and targets the Vite server on port 3000.
+
+## Compatibility, accuracy, and security
+
+The published package supports Node.js 18 and newer as well as modern browsers through ESM and CommonJS builds. It has no runtime dependencies and performs no network, file-system, or process operations when imported. Registry synchronization is a maintainer command that fetches data from IANA.
+
+HTTP registry state changes over time. The committed snapshot makes updates reviewable, while the scheduled registry workflow reports drift monthly. Report vulnerabilities privately through the [security policy](packages/http-status-lite/SECURITY.md).
+
+## Contributing and support
+
+Issues and focused pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, generated-file rules, package design guidelines, and the checks required before a pull request. Use [GitHub Issues](https://github.com/montasim/http-status-lite/issues) for bugs and feature requests; do not disclose vulnerabilities publicly.
+
+Optional support through [SupportKori](https://www.supportkori.com/montasim) helps fund standards tracking, compatibility testing, and continued maintenance. Bug reports, standards references, documentation improvements, and code contributions are equally valuable ways to help.
+
+## Author and license
+
+Created and maintained by [Montasim](https://github.com/montasim). Licensed under the [MIT License](LICENSE).

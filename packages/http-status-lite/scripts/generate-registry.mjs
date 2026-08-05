@@ -60,7 +60,7 @@ async function emit(relativePath, content) {
     if (checkOnly) {
         const current = await readFile(path, 'utf8').catch(() => '');
         if (current !== formatted) {
-            throw new Error(`${relativePath} is stale. Run npm run generate.`);
+            throw new Error(`${relativePath} is stale. Run pnpm generate.`);
         }
         return;
     }
