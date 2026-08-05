@@ -7,7 +7,7 @@ Tiny, standards-backed, type-safe HTTP status codes for Node.js and browsers.
 [![license](https://img.shields.io/npm/l/http-status-lite)](LICENSE)
 [![Support on SupportKori](https://img.shields.io/badge/Support-SupportKori-FFDD00)](https://www.supportkori.com/montasim)
 
-**[Try the live reference](https://http-status-lite-demo.netlify.app/) · [View the monorepo](https://github.com/montasim/http-status-lite)**
+**[Try the live reference](https://http-status-lite.netlify.app/) · [View the monorepo](https://github.com/montasim/http-status-lite)**
 
 ## Why use it?
 
@@ -243,7 +243,7 @@ The package follows semantic versioning. Treat removed exports or narrowed accep
 
 ## Documentation and support
 
-- [Interactive reference and recipes](https://http-status-lite-demo.netlify.app/docs)
+- [Interactive reference and recipes](https://http-status-lite.netlify.app/docs)
 - [Registry source](registry/statuses.json)
 - [Contribution guide](../../CONTRIBUTING.md)
 - [Security policy](SECURITY.md)

@@ -112,7 +112,7 @@
     "bugs": {
         "url": "https://github.com/montasim/http-status-lite/issues"
     },
-    "homepage": "https://http-status-lite-demo.netlify.app/",
+    "homepage": "https://http-status-lite.netlify.app/",
     "devDependencies": {
         "eslint": "9.39.2",
         "eslint-config-prettier": "10.1.8",
