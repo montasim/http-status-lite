@@ -16,7 +16,7 @@ const LINKS = [
 
 export function SiteFooter() {
     return (
-        <footer className="grid items-center gap-8 border-t border-slate-700 bg-slate-900 px-5 py-10 text-white md:grid-cols-[1fr_auto_1fr] md:px-[4.5%]">
+        <footer className="grid items-center gap-8 border-t border-white/15 bg-dark-surface px-5 py-10 text-white md:grid-cols-[1fr_auto_1fr] md:px-[4.5%]">
             <div>
                 <a
                     href="#top"

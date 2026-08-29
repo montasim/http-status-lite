@@ -28,15 +28,15 @@ export function QuickStartSection() {
             className="grid items-center gap-10 border-b border-slate-200 px-5 py-20 md:px-[4.5%] lg:grid-cols-[.82fr_1.25fr_.85fr] lg:gap-12 lg:py-28"
         >
             <div>
-                <p className="font-mono text-xs font-bold tracking-[0.14em] text-blue-600 uppercase">
+                <p className="font-mono text-xs font-bold tracking-label text-blue-600 uppercase">
                     Typed from end to end
                 </p>
-                <h2 className="mt-4 text-[clamp(2.4rem,4vw,4.3rem)] leading-[0.95] font-extrabold tracking-[-0.055em] text-slate-950">
+                <h2 className="mt-4 text-section font-bold tracking-section text-foreground">
                     One import.
                     <br />
                     Exact answers.
                 </h2>
-                <p className="mt-6 max-w-md text-sm leading-6 text-slate-600">
+                <p className="mt-5 max-w-[60ch] text-base leading-6 text-slate-600">
                     Literal inputs keep literal outputs, so your editor knows
                     the exact name and message—not just{' '}
                     <code className="rounded bg-slate-200 px-1 py-0.5 font-mono text-xs text-slate-900">
@@ -46,8 +46,8 @@ export function QuickStartSection() {
                 </p>
             </div>
 
-            <div className="overflow-hidden rounded-xl border border-slate-700 bg-slate-900 text-slate-100 shadow-2xl shadow-slate-900/20">
-                <div className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-slate-700 px-4 py-3 font-mono text-[10px] text-slate-400">
+            <div className="overflow-hidden rounded-xl border border-white/15 bg-dark-surface text-slate-100 shadow-2xl shadow-slate-900/20">
+                <div className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-white/15 px-4 py-3 font-mono text-meta text-slate-300">
                     <div className="flex gap-1.5">
                         <i className="size-2 rounded-full bg-rose-400" />
                         <i className="size-2 rounded-full bg-amber-400" />
@@ -56,7 +56,7 @@ export function QuickStartSection() {
                     <span>response.ts</span>
                     <span className="justify-self-end">TypeScript</span>
                 </div>
-                <pre className="min-h-72 overflow-x-auto p-6 font-mono text-xs leading-7 sm:p-8 sm:text-sm">
+                <pre className="min-h-72 overflow-x-auto p-6 font-mono text-xs leading-6 sm:p-8 sm:text-sm">
                     <code>
                         <span className="text-violet-300">import</span>{' '}
                         {'{ Status, getStatus, isSuccess }'}
@@ -89,10 +89,10 @@ export function QuickStartSection() {
                             <Icon className="size-4" />
                         </span>
                         <div>
-                            <h3 className="text-sm font-bold text-slate-950">
+                            <h3 className="text-sm font-bold text-foreground">
                                 {title}
                             </h3>
-                            <p className="mt-1 text-xs leading-5 text-slate-600">
+                            <p className="mt-1 text-sm leading-relaxed text-slate-600">
                                 {description}
                             </p>
                         </div>

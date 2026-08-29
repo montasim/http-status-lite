@@ -30,10 +30,10 @@ export function ApiMapSection() {
             id="migration"
             className="border-t border-slate-200 bg-slate-100 px-5 py-20 md:px-[4.5%] lg:py-28"
         >
-            <p className="font-mono text-xs font-bold tracking-[0.14em] text-blue-600 uppercase">
+            <p className="font-mono text-xs font-bold tracking-label text-blue-600 uppercase">
                 Pick the smallest entry point
             </p>
-            <h2 className="mt-3 max-w-xl text-[clamp(2.4rem,4vw,4.3rem)] leading-[0.96] font-extrabold tracking-[-0.055em] text-slate-950">
+            <h2 className="mt-3 max-w-xl text-section font-bold tracking-section text-foreground">
                 Use only what you need.
             </h2>
 
@@ -47,13 +47,13 @@ export function ApiMapSection() {
                             <Badge className="mb-auto w-fit bg-blue-100 font-mono text-blue-800">
                                 {entry.path}
                             </Badge>
-                            <h3 className="mt-10 font-bold text-slate-950">
+                            <h3 className="mt-10 font-bold text-foreground">
                                 {entry.title}
                             </h3>
                             <p className="mt-2 text-sm text-slate-600">
                                 {entry.description}
                             </p>
-                            <code className="mt-4 font-mono text-[10px] text-slate-500">
+                            <code className="mt-4 font-mono text-meta text-slate-500">
                                 {entry.exports}
                             </code>
                         </CardContent>

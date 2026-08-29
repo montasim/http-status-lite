@@ -52,12 +52,12 @@ export function StatusExplorer({ statuses }: StatusExplorerProps) {
         >
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
                 <div>
-                    <p className="font-mono text-xs font-bold tracking-[0.14em] text-blue-600 uppercase">
+                    <p className="font-mono text-xs font-bold tracking-label text-blue-600 uppercase">
                         Standards registry
                     </p>
                     <h2
                         id="reference-title"
-                        className="mt-3 text-[clamp(2.4rem,4vw,4.3rem)] leading-none font-extrabold tracking-[-0.055em] text-slate-950"
+                        className="mt-3 text-section font-bold tracking-section text-foreground"
                     >
                         Find a status code
                     </h2>
@@ -105,7 +105,7 @@ export function StatusExplorer({ statuses }: StatusExplorerProps) {
                         className="shrink-0"
                     >
                         All{' '}
-                        <span className="font-mono text-[10px] text-blue-600">
+                        <span className="font-mono text-meta text-blue-600">
                             {statuses.length}
                         </span>
                     </Button>
@@ -163,7 +163,7 @@ export function StatusExplorer({ statuses }: StatusExplorerProps) {
                     ) : (
                         <div className="grid min-h-52 place-items-center p-8 text-center">
                             <div>
-                                <p className="font-semibold text-slate-950">
+                                <p className="font-semibold text-foreground">
                                     No status codes match
                                 </p>
                                 <p className="mt-1 text-sm text-slate-500">
@@ -200,15 +200,15 @@ function StatusRow({ status, selected, onSelect }: StatusRowProps) {
             )}
         >
             <span
-                className={cn('font-mono text-xl font-extrabold', details.text)}
+                className={cn('font-mono text-lg font-bold', details.text)}
             >
                 {status.code}
             </span>
             <span className="min-w-0">
-                <strong className="block truncate text-sm text-slate-950">
+                <strong className="block truncate text-sm text-foreground">
                     {status.message}
                 </strong>
-                <code className="mt-1 block truncate font-mono text-[10px] text-slate-500">
+                <code className="mt-1 block truncate font-mono text-meta text-slate-500">
                     {status.name}
                 </code>
             </span>
@@ -221,7 +221,7 @@ function StatusRow({ status, selected, onSelect }: StatusRowProps) {
                 />
                 {capitalize(status.registryStatus)}
             </span>
-            <span className="hidden truncate font-mono text-[10px] text-slate-500 sm:block">
+            <span className="hidden truncate font-mono text-meta text-slate-500 sm:block">
                 {status.reference}
             </span>
             <span className="grid size-8 place-items-center rounded-md border border-transparent group-hover:border-slate-200 group-hover:bg-white">
@@ -243,7 +243,7 @@ function StatusInspector({ status }: { status: HttpStatusMetadata }) {
             <span
                 aria-hidden="true"
                 className={cn(
-                    'absolute -right-8 top-40 rotate-90 text-9xl font-black tracking-[-0.08em] opacity-[0.06]',
+                    'absolute -right-8 top-40 rotate-90 text-7xl font-extrabold tracking-display opacity-[0.06]',
                     details.text,
                 )}
             >
@@ -251,7 +251,7 @@ function StatusInspector({ status }: { status: HttpStatusMetadata }) {
             </span>
             <div
                 className={cn(
-                    'relative z-10 font-mono text-[10px] font-bold tracking-wider uppercase',
+                    'relative z-10 font-mono text-meta font-bold tracking-wider uppercase',
                     details.text,
                 )}
             >
@@ -259,16 +259,16 @@ function StatusInspector({ status }: { status: HttpStatusMetadata }) {
             </div>
             <div
                 className={cn(
-                    'relative z-10 mt-7 text-7xl leading-none font-black tracking-[-0.06em]',
+                    'relative z-10 mt-7 text-4xl leading-none font-extrabold tracking-display',
                     details.text,
                 )}
             >
                 {status.code}
             </div>
-            <h3 className="relative z-10 mt-4 text-xl font-bold text-slate-950">
+            <h3 className="relative z-10 mt-4 text-base font-bold text-foreground">
                 {status.message}
             </h3>
-            <code className="relative z-10 font-mono text-[11px] text-slate-500">
+            <code className="relative z-10 font-mono text-meta text-slate-500">
                 {status.name}
             </code>
 
@@ -282,16 +282,16 @@ function StatusInspector({ status }: { status: HttpStatusMetadata }) {
                 <MetadataRow label="Category" value={status.category} />
             </dl>
 
-            <Card className="relative z-10 mt-5 gap-0 bg-slate-900 py-0 text-slate-100 ring-slate-700">
-                <div className="flex items-center justify-between border-b border-slate-700 px-3 py-2 text-[10px] text-slate-400">
+            <Card className="relative z-10 mt-5 gap-0 bg-dark-surface py-0 text-slate-100 ring-white/15">
+                <div className="flex items-center justify-between border-b border-white/15 px-3 py-2 text-meta text-slate-300">
                     <span>Use in code</span>
                     <CopyButton
                         value={usage}
-                        className="size-7 text-slate-300 hover:bg-slate-800 hover:text-white"
+                        className="size-7 text-slate-300 hover:bg-white/10 hover:text-white"
                     />
                 </div>
                 <CardContent className="overflow-x-auto p-4">
-                    <pre className="font-mono text-[11px] leading-6">
+                    <pre className="font-mono text-meta leading-6">
                         <code>
                             <span className="text-violet-300">import</span>{' '}
                             {'{ Status }'}{' '}
@@ -338,7 +338,7 @@ function MetadataRow({
     return (
         <div className="flex justify-between gap-4 border-b border-slate-200 py-3">
             <dt className="text-slate-500">{label}</dt>
-            <dd className="m-0 text-right font-semibold text-slate-900">
+            <dd className="m-0 text-right font-semibold text-foreground">
                 {dot && (
                     <i
                         className={cn(

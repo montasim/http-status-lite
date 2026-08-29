@@ -123,7 +123,7 @@ function SectionHeading({
             <p className="font-mono text-[11px] font-bold tracking-[0.14em] text-blue-600 uppercase">
                 {label}
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.04em] text-slate-950 sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.04em] text-foreground sm:text-4xl">
                 {title}
             </h2>
             <div className="mt-4 max-w-2xl text-[15px] leading-7 text-slate-600">
@@ -139,7 +139,7 @@ export function DocsPage() {
             <SiteHeader active="docs" />
 
             <main id="top">
-                <section className="relative overflow-hidden border-b border-slate-200 bg-slate-950 px-5 py-16 text-white md:px-[4.5%] md:py-24">
+                <section className="relative overflow-hidden border-b border-slate-200 bg-dark-surface px-5 py-16 text-white md:px-[4.5%] md:py-24">
                     <div
                         aria-hidden="true"
                         className="absolute inset-0 bg-[linear-gradient(to_right,rgba(96,165,250,.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(96,165,250,.1)_1px,transparent_1px)] bg-[size:52px_52px] [mask-image:linear-gradient(to_bottom,black,transparent)]"
@@ -161,8 +161,8 @@ export function DocsPage() {
                             </p>
                         </div>
 
-                        <div className="overflow-hidden rounded-xl border border-slate-700 bg-slate-900/80 font-mono shadow-2xl">
-                            <div className="flex items-center justify-between border-b border-slate-700 px-5 py-3 text-[10px] tracking-wider text-slate-400 uppercase">
+                        <div className="overflow-hidden rounded-xl border border-white/15 bg-dark-surface/80 font-mono shadow-2xl">
+                            <div className="flex items-center justify-between border-b border-white/15 px-5 py-3 text-[10px] tracking-wider text-slate-300 uppercase">
                                 <span>GET /docs</span>
                                 <span className="text-emerald-400">200 OK</span>
                             </div>
@@ -421,7 +421,7 @@ export function DocsPage() {
                             <CodeBlock>{migration}</CodeBlock>
                             <div className="mt-8 flex flex-wrap gap-3">
                                 <Button
-                                    className="bg-slate-950 text-white hover:bg-blue-700"
+                                    className="bg-dark-surface text-white hover:bg-blue-700"
                                     asChild
                                 >
                                     <a href="/#reference">

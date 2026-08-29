@@ -26,19 +26,19 @@ export function SiteHeader({ active = 'reference' }: SiteHeaderProps) {
                 aria-label="Primary navigation"
             >
                 <a
-                    className={`${navItemClass} ${active === 'reference' ? 'bg-slate-100 text-slate-950' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'}`}
+                    className={`${navItemClass} ${active === 'reference' ? 'bg-slate-100 text-foreground' : 'text-slate-600 hover:bg-slate-100 hover:text-foreground'}`}
                     href="/#reference"
                 >
                     Reference
                 </a>
                 <a
-                    className={`${navItemClass} ${active === 'docs' ? 'bg-slate-100 text-slate-950' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'}`}
+                    className={`${navItemClass} ${active === 'docs' ? 'bg-slate-100 text-foreground' : 'text-slate-600 hover:bg-slate-100 hover:text-foreground'}`}
                     href="/docs"
                 >
                     Docs
                 </a>
                 <a
-                    className={`${navItemClass} text-slate-600 hover:bg-slate-100 hover:text-slate-950`}
+                    className={`${navItemClass} text-slate-600 hover:bg-slate-100 hover:text-foreground`}
                     href="/#migration"
                 >
                     Migration
@@ -81,7 +81,7 @@ export function SiteHeader({ active = 'reference' }: SiteHeaderProps) {
                 </Button>
                 <Button
                     size="sm"
-                    className="ml-1 bg-slate-900 text-white hover:bg-blue-700"
+                    className="ml-1 bg-dark-surface text-white hover:bg-blue-700"
                     asChild
                 >
                     <a href="/#install">

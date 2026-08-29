@@ -28,7 +28,7 @@ export function NotFoundPage() {
                             <span className="text-amber-500">404</span>
                         </div>
 
-                        <h1 className="mt-14 max-w-3xl text-[clamp(2.8rem,5vw,5.5rem)] leading-[0.9] font-extrabold tracking-[-0.06em] text-slate-950">
+                        <h1 className="mt-14 max-w-3xl text-[clamp(2.8rem,5vw,5.5rem)] leading-[0.9] font-extrabold tracking-[-0.06em] text-foreground">
                             This route is
                             <br />
                             not in the registry.
@@ -45,7 +45,7 @@ export function NotFoundPage() {
                         <div className="mt-7 flex flex-wrap gap-3">
                             <Button
                                 size="lg"
-                                className="bg-slate-950 text-white hover:bg-blue-700"
+                                className="bg-dark-surface text-white hover:bg-blue-700"
                                 asChild
                             >
                                 <a href="/#reference">

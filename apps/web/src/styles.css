@@ -5,15 +5,16 @@
 
 :root {
     --background: oklch(0.975 0.008 255);
-    --foreground: oklch(0.205 0.045 260);
+    --foreground: oklch(0.38 0.035 260);
+    --dark-surface: oklch(0.29 0.045 260);
     --card: oklch(1 0 0);
-    --card-foreground: oklch(0.205 0.045 260);
+    --card-foreground: var(--foreground);
     --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.205 0.045 260);
+    --popover-foreground: var(--foreground);
     --primary: oklch(0.57 0.22 260);
     --primary-foreground: oklch(0.985 0 0);
     --secondary: oklch(0.94 0.012 255);
-    --secondary-foreground: oklch(0.25 0.04 260);
+    --secondary-foreground: var(--foreground);
     --muted: oklch(0.95 0.009 255);
     --muted-foreground: oklch(0.52 0.035 260);
     --accent: oklch(0.92 0.03 255);
@@ -28,8 +29,21 @@
 @theme inline {
     --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
     --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+    --text-display: clamp(2.25rem, 5vw, 4rem);
+    --text-display--line-height: 0.92;
+    --text-hero: clamp(1.75rem, 2.6vw, 2.75rem);
+    --text-hero--line-height: 1.08;
+    --text-section: clamp(1.5rem, 2vw, 2.25rem);
+    --text-section--line-height: 1.12;
+    --text-meta: 0.75rem;
+    --text-meta--line-height: 1.125rem;
+    --tracking-display: -0.035em;
+    --tracking-hero: -0.025em;
+    --tracking-section: -0.02em;
+    --tracking-label: 0.1em;
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    --color-dark-surface: var(--dark-surface);
     --color-card: var(--card);
     --color-card-foreground: var(--card-foreground);
     --color-popover: var(--popover);
